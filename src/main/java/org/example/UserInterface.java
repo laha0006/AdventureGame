@@ -18,29 +18,55 @@ public class UserInterface {
         if (splitInput.length == 1) {
             switch (splitInput[0]) {
                 case "n", "north":
-                    System.out.println("You went north");
-                    break;
+                    if (adventure.current.getNorth() != null) {
+                        adventure.setCurrentRoom(adventure.current.getNorth());
+                        System.out.println("You went north to " + adventure.current.getName());
+                        System.out.println();
+                        break;
+                    } else {
+                        System.out.println("You can't go that way.");
+                        break;
+                    }
+
                 case "s", "south":
-                    System.out.println("You went south");
-                    break;
+                    if (adventure.current.getSouth() != null) {
+                        adventure.setCurrentRoom(adventure.current.getSouth());
+                        System.out.println("You went south to " + adventure.current.getName());
+                        break;
+                    } else {
+                        System.out.println("You can't go that way.");
+                        break;
+                    }
                 case "e", "east":
-                    System.out.println("You went east");
-                    break;
+                    if (adventure.current.getEast() != null) {
+                        adventure.setCurrentRoom(adventure.current.getEast());
+                        System.out.println("You went east to " + adventure.current.getName());
+                        break;
+                    } else {
+                        System.out.println("You can't go that way.");
+                        break;
+                    }
                 case "w", "west":
-                    System.out.println("You went west");
-                    break;
+                    if (adventure.current.getWest() != null) {
+                        adventure.setCurrentRoom(adventure.current.getWest());
+                        System.out.println("You went west to " + adventure.current.getName());
+                        break;
+                    } else {
+                        System.out.println("You can't go that way.");
+                        break;
+                    }
                 case "look":
                     System.out.println("You looked around and found nothing");
                     break;
             }
         }
         if (splitInput.length == 2) {
-            switch(splitInput[0]) {
+            switch (splitInput[0]) {
                 case "go":
                     go(splitInput[1]);
                     break;
                 case "look":
-                    System.out.println("You looked " + splitInput[1]+ " and found nothing");
+                    System.out.println("You looked " + splitInput[1] + " and found nothing");
                     break;
 
             }
@@ -50,16 +76,16 @@ public class UserInterface {
     private void go(String direction) {
         switch (direction) {
             case "n", "north":
-                System.out.println("We went north");
+                System.out.println("You went north");
                 break;
             case "s", "south":
-                System.out.println("We went south");
+                System.out.println("You went south");
                 break;
             case "e", "east":
-                System.out.println("We went east");
+                System.out.println("You went east");
                 break;
             case "w", "west":
-                System.out.println("We went west");
+                System.out.println("You went west");
                 break;
 
         }
