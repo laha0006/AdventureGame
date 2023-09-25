@@ -9,7 +9,7 @@ public class UserInterface {
     String currentRoom;
 
 
-    public void handleInput() {
+    public void handleInput(Adventure adventure) {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
