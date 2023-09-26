@@ -52,6 +52,8 @@ public class Adventure {
 
     public void start() {
         buildWorld();
+        System.out.println("Welcome to the The Game currently know as Adventure Game");
+        System.out.println("Write 'help' to show commands");
         System.out.println("You've entered:  " + current.getName());
         System.out.println(current.getDescription());
         while (true) {
