@@ -32,15 +32,18 @@ public class UserInterface {
                     if (adventure.current.getSouth() != null) {
                         adventure.setCurrentRoom(adventure.current.getSouth());
                         System.out.println("You went south to " + adventure.current.getName());
+                        System.out.println(adventure.current.getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
+                        System.out.println(adventure.current.getDescription());
                         break;
                     }
                 case "e", "east":
                     if (adventure.current.getEast() != null) {
                         adventure.setCurrentRoom(adventure.current.getEast());
                         System.out.println("You went east to " + adventure.current.getName());
+                        System.out.println(adventure.current.getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
@@ -50,13 +53,15 @@ public class UserInterface {
                     if (adventure.current.getWest() != null) {
                         adventure.setCurrentRoom(adventure.current.getWest());
                         System.out.println("You went west to " + adventure.current.getName());
+                        System.out.println(adventure.current.getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
                         break;
                     }
                 case "look":
-                    System.out.println("You looked around and found nothing");
+                    System.out.println("You looked around and found nothing new");
+                    System.out.println(adventure.current.getDescription());
                     break;
             }
         }
