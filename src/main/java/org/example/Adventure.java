@@ -37,22 +37,13 @@ public class Adventure {
         //set up connections
         room1.setEast(room2);
         room1.setSouth(room4);
-        room2.setWest(room1);
         room2.setEast(room3);
-        room3.setWest(room2);
         room3.setSouth(room6);
-        room4.setNorth(room1);
         room4.setSouth(room7);
         treasureRoom.setSouth(room8);
-        room6.setNorth(room3);
         room6.setSouth(room9);
         room7.setEast(room8);
-        room7.setNorth(room4);
         room8.setEast(room9);
-        room8.setNorth(treasureRoom);
-        room8.setWest(room7);
-        room9.setNorth(room6);
-        room9.setWest(room8);
         current = room1;
     }
 
