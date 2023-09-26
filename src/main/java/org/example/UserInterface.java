@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -60,42 +61,40 @@ public class UserInterface {
                         break;
                     }
                 case "look":
-                    System.out.println("You looked around and found nothing new");
-                    System.out.println(adventure.current.getDescription());
-                    break;
-            }
-        }
-        if (splitInput.length == 2) {
-            switch (splitInput[0]) {
-                case "go":
-                    go(splitInput[1]);
-                    break;
-                case "look":
-                    System.out.println("You looked " + splitInput[1] + " and found nothing");
+                    showLoot(adventure.current.getLoot());
+                    System.out.println("\n" + adventure.current.getDescription());
                     break;
 
-            }
-        }
-    }
+                case "help":
+                    help();
 
-    private void go(String direction) {
-        switch (direction) {
-            case "n", "north":
-                System.out.println("You went north");
-                break;
-            case "s", "south":
-                System.out.println("You went south");
-                break;
-            case "e", "east":
-                System.out.println("You went east");
-                break;
-            case "w", "west":
-                System.out.println("You went west");
-                break;
+            }
 
         }
     }
 
+    public void help() {
+        System.out.println("You use the following commands to play the game;");
+        System.out.println("To move in a direction enter 'N', 'S', 'E', 'W' to move north, south, east or west.");
+        System.out.println("Enter 'look' to look around at your current location");
+    }
+
+
+    public void showLoot(ArrayList<String> loot) {
+        if (!loot.isEmpty()) {
+            System.out.println("You found: ");
+            if (loot.size() == 1) {
+                System.out.print(loot.get(0));
+            } else {
+                for (String item : loot) {
+                    System.out.print(item + ", ");
+                }
+            }
+        } else {
+            System.out.print("You found nothing.");
+        }
+
+    }
 
     public String getCurrentRoom() {
         return currentRoom;

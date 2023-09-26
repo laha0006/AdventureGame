@@ -1,18 +1,27 @@
 package org.example;
+
+import java.util.ArrayList;
+
 public class Room {
     String name;
     String description;
+    ArrayList<String> loot;
 
-    Room north;
-    Room south;
-    Room east;
-    Room west;
+    private Room north;
+    private Room south;
+    private Room east;
+    private Room west;
 
     //Array<Item> loot;
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
+        loot = new ArrayList<String>();
+    }
+
+    public void addLoot(String item) {
+        loot.add(item);
     }
 //Set metoder
     public void setNorth(Room north) {
@@ -55,5 +64,9 @@ public class Room {
 
     public String getDescription() {
         return description;
+    }
+
+    public ArrayList<String> getLoot() {
+        return loot;
     }
 }
