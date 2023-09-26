@@ -63,6 +63,10 @@ public class UserInterface {
                     System.out.println("You looked around and found nothing new");
                     System.out.println(adventure.current.getDescription());
                     break;
+
+                case "help":
+                    help();
+
             }
 
         }
