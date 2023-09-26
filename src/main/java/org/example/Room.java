@@ -26,18 +26,30 @@ public class Room {
 //Set metoder
     public void setNorth(Room north) {
         this.north = north;
+        if(north.getSouth() != null) {
+            north.setSouth(this);
+        }
     }
 
     public void setSouth(Room south) {
         this.south = south;
+        if(south.getNorth() != null) {
+            south.setNorth(this);
+        }
     }
 
     public void setEast(Room east) {
         this.east = east;
+        if( east.getWest() != null) {
+            east.setWest(this);
+        }
     }
 
     public void setWest(Room west) {
         this.west = west;
+        if( west.getEast() != null) {
+            west.setEast(this);
+        }
     }
     //Get metoder
 
