@@ -18,6 +18,7 @@ public class Adventure {
         Room room1 = new Room("Room 1", "The start of your adventures begins here. The room is empty and two doors are visible to the east and south.");
         room1.addLoot("Dead adventurer's backpack");
         Room room2 = new Room("Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
+        room2.addLoot("A big strange bone");
         Room room3 = new Room("Room 3","Troll market - here you can purchase cheese and hobbit-sandwiches.");
         room3.addLoot("Freshly made hobbit-sandwich");
         Room room4 = new Room("Room 4","A lush environment, the sound of running water echoes.");
