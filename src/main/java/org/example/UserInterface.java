@@ -21,7 +21,7 @@ public class UserInterface {
                     if (adventure.current.getNorth() != null) {
                         adventure.setCurrentRoom(adventure.current.getNorth());
                         System.out.println("You went north to " + adventure.current.getName());
-                        System.out.println();
+                        System.out.println(adventure.current.getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
