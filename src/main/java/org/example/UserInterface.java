@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
+    private final Adventure adventure;
 
-    String direction;
-    String showLoot;
-    String currentRoom;
-
-
-    public void handleInput(Adventure adventure) {
+    public UserInterface(Adventure adventure) {
+        this.adventure = adventure;
+    }
+    public void handleInput() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
@@ -19,10 +18,10 @@ public class UserInterface {
         if (splitInput.length == 1) {
             switch (splitInput[0]) {
                 case "n", "north":
-                    if (adventure.current.getNorth() != null) {
-                        adventure.setCurrentRoom(adventure.current.getNorth());
-                        System.out.println("You went north to " + adventure.current.getName());
-                        System.out.println(adventure.current.getDescription());
+                    if (adventure.getCurrentRoom().getNorth() != null) {
+                        adventure.setCurrentRoom(adventure.getCurrentRoom().getNorth());
+                        System.out.println("You went north to " + adventure.getCurrentRoom().getName());
+                        System.out.println(adventure.getCurrentRoom().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
@@ -30,39 +29,39 @@ public class UserInterface {
                     }
 
                 case "s", "south":
-                    if (adventure.current.getSouth() != null) {
-                        adventure.setCurrentRoom(adventure.current.getSouth());
-                        System.out.println("You went south to " + adventure.current.getName());
-                        System.out.println(adventure.current.getDescription());
+                    if (adventure.getCurrentRoom().getSouth() != null) {
+                        adventure.setCurrentRoom(adventure.getCurrentRoom().getSouth());
+                        System.out.println("You went south to " + adventure.getCurrentRoom().getName());
+                        System.out.println(adventure.getCurrentRoom().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
-                        System.out.println(adventure.current.getDescription());
+                        System.out.println(adventure.getCurrentRoom().getDescription());
                         break;
                     }
                 case "e", "east":
-                    if (adventure.current.getEast() != null) {
-                        adventure.setCurrentRoom(adventure.current.getEast());
-                        System.out.println("You went east to " + adventure.current.getName());
-                        System.out.println(adventure.current.getDescription());
+                    if (adventure.getCurrentRoom().getEast() != null) {
+                        adventure.setCurrentRoom(adventure.getCurrentRoom().getEast());
+                        System.out.println("You went east to " + adventure.getCurrentRoom().getName());
+                        System.out.println(adventure.getCurrentRoom().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
                         break;
                     }
                 case "w", "west":
-                    if (adventure.current.getWest() != null) {
-                        adventure.setCurrentRoom(adventure.current.getWest());
-                        System.out.println("You went west to " + adventure.current.getName());
-                        System.out.println(adventure.current.getDescription());
+                    if (adventure.getCurrentRoom().getWest() != null) {
+                        adventure.setCurrentRoom(adventure.getCurrentRoom().getWest());
+                        System.out.println("You went west to " + adventure.getCurrentRoom().getName());
+                        System.out.println(adventure.getCurrentRoom().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
                         break;
                     }
                 case "look":
-                    showLoot(adventure.current.getLoot());
-                    System.out.println("\n" + adventure.current.getDescription());
+                    showLoot(adventure.getCurrentRoom().getLoot());
+                    System.out.println("\n" + adventure.getCurrentRoom().getDescription());
                     break;
 
                 case "help":
@@ -96,11 +95,4 @@ public class UserInterface {
 
     }
 
-    public String getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
 }
