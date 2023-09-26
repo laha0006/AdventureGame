@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -60,8 +61,8 @@ public class UserInterface {
                         break;
                     }
                 case "look":
-                    System.out.println("You looked around and found nothing new");
-                    System.out.println(adventure.current.getDescription());
+                    showLoot(adventure.current.getLoot());
+                    System.out.println("\n" + adventure.current.getDescription());
                     break;
 
                 case "help":
@@ -71,12 +72,29 @@ public class UserInterface {
 
         }
     }
+
     public void help() {
         System.out.println("You use the following commands to play the game;");
         System.out.println("To move in a direction enter 'N', 'S', 'E', 'W' to move north, south, east or west.");
         System.out.println("Enter 'look' to look around at your current location");
     }
 
+
+    public void showLoot(ArrayList<String> loot) {
+        if (!loot.isEmpty()) {
+            System.out.println("You found: ");
+            if (loot.size() == 1) {
+                System.out.print(loot.get(0));
+            } else {
+                for (String item : loot) {
+                    System.out.print(item + ", ");
+                }
+            }
+        } else {
+            System.out.print("You found nothing.");
+        }
+
+    }
 
     public String getCurrentRoom() {
         return currentRoom;
