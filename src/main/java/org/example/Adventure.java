@@ -52,7 +52,8 @@ public class Adventure {
 
     public void start() {
         buildWorld();
-        System.out.println("Weclome to " + current.getName());
+        System.out.println("You've entered:  " + current.getName());
+        System.out.println(current.getDescription());
         while (true) {
             ui.handleInput(this);
         }

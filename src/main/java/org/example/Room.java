@@ -10,8 +10,9 @@ public class Room {
 
     //Array<Item> loot;
 
-    public Room(String name) {
+    public Room(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 //Set metoder
     public void setNorth(Room north) {
@@ -50,5 +51,9 @@ public class Room {
 
     public Room getWest() {
         return west;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
