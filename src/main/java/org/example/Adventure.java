@@ -1,17 +1,17 @@
 package org.example;
 
 public class Adventure {
-    Room current;
-    UserInterface ui;
+    private Room current;
+    private final UserInterface ui;
 
     public Adventure() {
-        ui = new UserInterface();
+        ui = new UserInterface(this);
 
     }
 
     public Adventure(Room current) {
         this.current = current;
-        ui = new UserInterface();
+        ui = new UserInterface(this);
     }
 
     public void buildWorld() {
@@ -51,6 +51,10 @@ public class Adventure {
         current = room;
     }
 
+    public Room getCurrentRoom() {
+        return current;
+    }
+
     public void start() {
         buildWorld();
         System.out.println("Welcome to the The Game currently know as Adventure Game");
@@ -58,7 +62,7 @@ public class Adventure {
         System.out.println("You've entered:  " + current.getName());
         System.out.println(current.getDescription());
         while (true) {
-            ui.handleInput(this);
+            ui.handleInput();
         }
     }
 }

@@ -3,9 +3,9 @@ package org.example;
 import java.util.ArrayList;
 
 public class Room {
-    String name;
-    String description;
-    ArrayList<String> loot;
+    private final String name;
+    private final String description;
+    private ArrayList<String> loot;
 
     private Room north;
     private Room south;
