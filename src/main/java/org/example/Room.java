@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Room {
     private final String name;
     private final String description;
-    private ArrayList<String> loot;
+    private ArrayList<Item> loot;
 
     private Room north;
     private Room south;
@@ -17,13 +17,18 @@ public class Room {
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
-        loot = new ArrayList<String>();
+        loot = new ArrayList<Item>();
     }
 
-    public void addLoot(String item) {
+    public void addItem(Item item) {
         loot.add(item);
     }
-//Set metoder
+
+    public void removeItem(Item item) {
+        loot.remove(item);
+    }
+
+    //Set metoder
     public void setNorth(Room north) {
         this.north = north;
         if(north.getSouth() == null) {
@@ -78,7 +83,7 @@ public class Room {
         return description;
     }
 
-    public ArrayList<String> getLoot() {
+    public ArrayList<Item> getLoot() {
         return loot;
     }
 }

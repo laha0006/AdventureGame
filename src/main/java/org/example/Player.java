@@ -7,7 +7,6 @@ public class Player {
     public Player() {
     }
 
-
     public void setCurrentPosition(Room position) {
         currentPosition = position;
     }

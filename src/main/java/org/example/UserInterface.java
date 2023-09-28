@@ -49,8 +49,8 @@ public class UserInterface {
                     }
                 case "e", "east":
                     if (adventure.movePlayer("east")) {
-                        System.out.println("You went east to " + adventure.getPlayerPosition().getName());
-                        System.out.println(adventure.getPlayerPosition().getDescription());
+                        System.out.println("You went east to " + adventure.getCurrentRoomName());
+                        System.out.println(adventure.getCurrentRoomDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
@@ -81,6 +81,9 @@ public class UserInterface {
         System.out.println("You use the following commands to play the game;");
         System.out.println("To move in a direction enter 'N', 'S', 'E', 'W' to move north, south, east or west.");
         System.out.println("Enter 'look' to look around at your current location");
+        System.out.println("Enter 'inv' or 'inventory' to open your inventory");
+        System.out.println("Enter 'take NAME' to pick-up item");
+        System.out.println("Enter 'drop NAME' to drop item");
     }
 
 
@@ -90,8 +93,8 @@ public class UserInterface {
             if (loot.size() == 1) {
                 System.out.print(loot.get(0));
             } else {
-                for (String item : loot) {
-                    System.out.print(item + ", ");
+                for (Item item : loot) {
+                    System.out.print(item.getLongName() + ", ");
                 }
             }
         } else {
