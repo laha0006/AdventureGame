@@ -49,20 +49,18 @@ public class UserInterface {
                         break;
                     }
                 case "e", "east":
-                    if (adventure.getCurrentRoom().getEast() != null) {
-                        adventure.setCurrentRoom(adventure.getCurrentRoom().getEast());
-                        System.out.println("You went east to " + adventure.getCurrentRoom().getName());
-                        System.out.println(adventure.getCurrentRoom().getDescription());
+                    if (adventure.movePlayer("east")) {
+                        System.out.println("You went east to " + adventure.getPlayerPosition().getName());
+                        System.out.println(adventure.getPlayerPosition().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
                         break;
                     }
                 case "w", "west":
-                    if (adventure.getCurrentRoom().getWest() != null) {
-                        adventure.setCurrentRoom(adventure.getCurrentRoom().getWest());
-                        System.out.println("You went west to " + adventure.getCurrentRoom().getName());
-                        System.out.println(adventure.getCurrentRoom().getDescription());
+                    if (adventure.movePlayer("west")) {
+                        System.out.println("You went west to " + adventure.getPlayerPosition().getName());
+                        System.out.println(adventure.getPlayerPosition().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
