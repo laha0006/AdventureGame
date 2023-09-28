@@ -28,10 +28,9 @@ public class UserInterface {
         if (splitInput.length == 1) {
             switch (splitInput[0]) {
                 case "n", "north":
-                    if (adventure.getCurrentRoom().getNorth() != null) {
-                        adventure.setCurrentRoom(adventure.getCurrentRoom().getNorth());
-                        System.out.println("You went north to " + adventure.getCurrentRoom().getName());
-                        System.out.println(adventure.getCurrentRoom().getDescription());
+                    if (adventure.movePlayer("north")) {
+                        System.out.println("You went north to " + adventure.getPlayerPosition().getName());
+                        System.out.println(adventure.getPlayerPosition().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
@@ -45,7 +44,7 @@ public class UserInterface {
                         break;
                     } else {
                         System.out.println("You can't go that way.");
-                        System.out.println(adventure.getCurrentRoom().getDescription());
+                        System.out.println(adventure.getPlayerPosition().getDescription());
                         break;
                     }
                 case "e", "east":
