@@ -1,4 +1,7 @@
 package org.example;
+
+import java.util.ArrayList;
+
 public class Adventure {
     private final Map map;
     private final Player player;
@@ -49,5 +52,46 @@ public class Adventure {
         }
         return false;
     }
+
+    public String getCurrentRoomDescription() {
+        return player.getPlayerPosition().getDescription();
+    }
+
+    public String getCurrentRoomName() {
+        return player.getPlayerPosition().getName();
+    }
+
+    public ArrayList<Item> getCurrentRoomLoot() {
+        return player.getPlayerPosition().getLoot();
+    }
+    public boolean takeItem(String itemToTake){
+        ArrayList<Item> items = player.getPlayerPosition().getLoot();
+        for(Item item : items) {
+            if(item.getShortName().equalsIgnoreCase(itemToTake)) {
+                player.getPlayerPosition().removeItem(item);
+                player.addItem(item);
+                return true;
+            }
+        }
+        System.out.println("I'm here.");
+        return false;
+    }
+    public boolean dropItem(String itemToDrop){
+        ArrayList<Item> items = player.getInventory();
+        if(items.isEmpty()) return false;
+        for(Item item : items) {
+            if(item.getShortName().equalsIgnoreCase(itemToDrop)) {
+                player.removeItem(item);
+                player.getPlayerPosition().addItem(item);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Item> getPlayerInventory() {
+        return player.getInventory();
+    }
 }
+
 
