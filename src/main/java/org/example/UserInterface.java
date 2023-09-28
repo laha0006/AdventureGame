@@ -9,6 +9,16 @@ public class UserInterface {
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
     }
+
+    public void start() {
+        System.out.println("Welcome to the The Game currently know as Adventure Game");
+        System.out.println("Write 'help' to show commands");
+        System.out.println("You've entered:  " + adventure.getStartingRoom().getName());
+        System.out.println(adventure.getStartingRoom().getDescription());
+        while (true) {
+            handleInput();
+        }
+    }
     public void handleInput() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -29,10 +39,9 @@ public class UserInterface {
                     }
 
                 case "s", "south":
-                    if (adventure.getCurrentRoom().getSouth() != null) {
-                        adventure.setCurrentRoom(adventure.getCurrentRoom().getSouth());
-                        System.out.println("You went south to " + adventure.getCurrentRoom().getName());
-                        System.out.println(adventure.getCurrentRoom().getDescription());
+                    if (adventure.movePlayer("south")) {
+                        System.out.println("You went south to " + adventure.getPlayerPosition().getName());
+                        System.out.println(adventure.getPlayerPosition().getDescription());
                         break;
                     } else {
                         System.out.println("You can't go that way.");
@@ -60,15 +69,14 @@ public class UserInterface {
                         break;
                     }
                 case "look":
-                    showLoot(adventure.getCurrentRoom().getLoot());
-                    System.out.println("\n" + adventure.getCurrentRoom().getDescription());
+                    showLoot(adventure.getPlayerPosition().getLoot());
+                    System.out.println("\n" + adventure.getPlayerPosition().getDescription());
                     break;
 
                 case "help":
                     help();
 
             }
-
         }
     }
 
