@@ -12,7 +12,7 @@ public class Map {
         Room room2 = new Room("Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
         room2.addItem(new Item("A big strange bone", "Bone"));
         Room room3 = new Room("Room 3","Troll market - here you can purchase cheese and hobbit-sandwiches.");
-        room3.addLoot("Freshly made hobbit-sandwich");
+        room3.addItem(new Item("Freshly made hobbit-sandwich", "Sandwich"));
         Room room4 = new Room("Room 4","A lush environment, the sound of running water echoes.");
         Room treasureRoom = new Room("Treasure Room","Piles of gemstones, gold, and relics are stacked as far as the eye can see");
         treasureRoom.addItem(new Item ("The Treasure of Adventure Game", "Treasure"));

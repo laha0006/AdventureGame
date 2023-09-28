@@ -44,7 +44,7 @@ public class UserInterface {
                         break;
                     } else {
                         System.out.println("You can't go that way.");
-                        System.out.println(adventure.getPlayerPosition().getDescription());
+                        System.out.println(adventure.getCurrentRoomDescription());
                         break;
                     }
                 case "e", "east":
