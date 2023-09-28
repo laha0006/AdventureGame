@@ -10,14 +10,14 @@ public class Map {
         Room room1 = new Room("Room 1", "The start of your adventures begins here. The room is empty and two doors are visible to the east and south.");
         room1.addItem(new Item("Dead adventurer's backpack","backpack"));
         Room room2 = new Room("Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
-        room2.addLoot("A big strange bone");
+        room2.addItem(new Item("A big strange bone", "Bone"));
         Room room3 = new Room("Room 3","Troll market - here you can purchase cheese and hobbit-sandwiches.");
         room3.addLoot("Freshly made hobbit-sandwich");
         Room room4 = new Room("Room 4","A lush environment, the sound of running water echoes.");
         Room treasureRoom = new Room("Treasure Room","Piles of gemstones, gold, and relics are stacked as far as the eye can see");
         treasureRoom.addItem(new Item ("The Treasure of Adventure Game", "Treasure"));
         Room room6 = new Room("Room 6","Old tracks for minecarts rusted on the ground, the stench of metal and rust lingers.");
-        room6.addLoot("A rusty and dusty key");
+        room6.addItem(new Item ("A rusty and dusty key","Key"));
         Room room7 = new Room("Room 7", "In the middle of the room a water fountain is placed. Next to it is a bucket and some rope.");
         room7.addItem(new Item("Bucket","Bucket"));
         room7.addItem(new Item("Rope","Rope"));
