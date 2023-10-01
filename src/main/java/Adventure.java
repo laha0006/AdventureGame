@@ -71,7 +71,6 @@ public class Adventure {
                 return true;
             }
         }
-        System.out.println("I'm here.");
         return false;
     }
     public boolean dropItem(String itemToDrop){
