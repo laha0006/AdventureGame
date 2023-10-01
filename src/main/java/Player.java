@@ -25,6 +25,18 @@ public class Player {
         inventory.remove(item);
     }
 
+    public boolean takeItem(String itemToTake){
+        ArrayList<Item> items = currentPosition.getLoot();
+        for(Item item : items) {
+            if(item.getShortName().equalsIgnoreCase(itemToTake)) {
+                currentPosition.removeItem(item);
+                addItem(item);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Item> getInventory() {
         return inventory;
     }
