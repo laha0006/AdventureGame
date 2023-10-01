@@ -17,24 +17,33 @@ public class Player {
         return currentPosition;
     }
 
-    public void addItem(Item item) {
-        inventory.add(item);
-    }
-
-    public void removeItem(Item item) {
-        inventory.remove(item);
-    }
-
     public boolean takeItem(String itemToTake){
-        ArrayList<Item> items = currentPosition.getLoot();
-        for(Item item : items) {
-            if(item.getShortName().equalsIgnoreCase(itemToTake)) {
-                currentPosition.removeItem(item);
-                addItem(item);
-                return true;
-            }
+        Item item = currentPosition.searchRoom(itemToTake);
+        if (item != null) {
+            currentPosition.removeItem(item);
+            inventory.add(item);
+            return true;
         }
         return false;
+    }
+
+    public boolean dropItem(String itemToDrop){
+        Item item = searchInv(itemToDrop);
+        if (item != null) {
+            inventory.remove(item);
+            currentPosition.addItem(item);
+            return true;
+        }
+        return false;
+    }
+
+    public Item searchInv(String itemName) {
+        for(Item item : inventory) {
+            if(item.getShortName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Item> getInventory() {
