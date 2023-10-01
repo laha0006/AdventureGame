@@ -7,6 +7,7 @@ public class Adventure {
     public Adventure() {
         map = new Map();
         player = new Player();
+        start();
     }
 
     public void start() {
