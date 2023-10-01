@@ -62,11 +62,11 @@ public class Adventure {
     public ArrayList<Item> getCurrentRoomLoot() {
         return player.getPlayerPosition().getLoot();
     }
-    public boolean takeItem(String itemToTake){
-        return player.takeItem(itemToTake);
+    public boolean takeItem(String itemName){
+        return player.takeItem(itemName);
     }
-    public boolean dropItem(String itemToDrop){
-        return player.dropItem(itemToDrop);
+    public boolean dropItem(String itemName){
+        return player.dropItem(itemName);
     }
 
     public ArrayList<Item> getPlayerInventory() {
