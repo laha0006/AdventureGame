@@ -1,5 +1,3 @@
-package org.example;
-
 public class Map {
     private Room startingRoom;
 
