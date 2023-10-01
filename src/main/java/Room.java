@@ -28,7 +28,7 @@ public class Room {
 
     public Item searchRoom(String itemName) {
         for(Item item : loot) {
-            if(item.getShortName().equalsIgnoreCase(itemName) {
+            if(item.getShortName().equalsIgnoreCase(itemName)) {
                 return item;
             }
         }
