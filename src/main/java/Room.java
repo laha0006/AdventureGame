@@ -26,6 +26,15 @@ public class Room {
         loot.remove(item);
     }
 
+    public Item searchRoom(String itemName) {
+        for(Item item : loot) {
+            if(item.getShortName().equalsIgnoreCase(itemName) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     //Set metoder
     public void setNorth(Room north) {
         this.north = north;
