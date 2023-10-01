@@ -17,21 +17,21 @@ public class Player {
         return currentPosition;
     }
 
-    public boolean takeItem(String itemToTake){
-        Item item = currentPosition.searchRoom(itemToTake);
-        if (item != null) {
-            currentPosition.removeItem(item);
-            inventory.add(item);
+    public boolean takeItem(String itemName){
+        Item itemToTake = currentPosition.searchRoom(itemName);
+        if (itemToTake != null) {
+            currentPosition.removeItem(itemToTake);
+            inventory.add(itemToTake);
             return true;
         }
         return false;
     }
 
-    public boolean dropItem(String itemToDrop){
-        Item item = searchInv(itemToDrop);
-        if (item != null) {
-            inventory.remove(item);
-            currentPosition.addItem(item);
+    public boolean dropItem(String itemName){
+        Item itemToDrop = searchInv(itemName);
+        if (itemToDrop != null) {
+            inventory.remove(itemToDrop);
+            currentPosition.addItem(itemToDrop);
             return true;
         }
         return false;
