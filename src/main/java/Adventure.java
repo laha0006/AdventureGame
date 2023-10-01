@@ -66,16 +66,7 @@ public class Adventure {
         return player.takeItem(itemToTake);
     }
     public boolean dropItem(String itemToDrop){
-        ArrayList<Item> items = player.getInventory();
-        if(items.isEmpty()) return false;
-        for(Item item : items) {
-            if(item.getShortName().equalsIgnoreCase(itemToDrop)) {
-                player.removeItem(item);
-                player.getPlayerPosition().addItem(item);
-                return true;
-            }
-        }
-        return false;
+        return player.dropItem(itemToDrop);
     }
 
     public ArrayList<Item> getPlayerInventory() {
