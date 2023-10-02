@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class Player {
     private Room currentPosition;
     private ArrayList<Item> inventory;
+    private int maxHealthPoints = 60;
+    private int healthPoints;
     //inventory
 
     public Player() {
@@ -46,11 +48,11 @@ public class Player {
         currentPosition = room;
     }
 
-    public Room getPlayerPosition(){
+    public Room getPlayerPosition() {
         return currentPosition;
     }
 
-    public Item takeItem(String itemName){
+    public Item takeItem(String itemName) {
         Item itemToTake = currentPosition.searchRoom(itemName);
         if (itemToTake != null) {
             currentPosition.removeItem(itemToTake);
@@ -60,7 +62,7 @@ public class Player {
         return null;
     }
 
-    public Item dropItem(String itemName){
+    public Item dropItem(String itemName) {
         Item itemToDrop = searchInv(itemName);
         if (itemToDrop != null) {
             inventory.remove(itemToDrop);
@@ -71,8 +73,8 @@ public class Player {
     }
 
     public Item searchInv(String itemName) {
-        for(Item item : inventory) {
-            if(item.getShortName().equalsIgnoreCase(itemName)) {
+        for (Item item : inventory) {
+            if (item.getShortName().equalsIgnoreCase(itemName)) {
                 return item;
             }
         }
@@ -94,5 +96,32 @@ public class Player {
     public ArrayList<Item> getCurrentRoomLoot() {
         return currentPosition.getLoot();
     }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public int getMaxHealthPoints() {
+        return maxHealthPoints;
+    }
+
+    public Item consume(String foodName) {
+        Item foodToEat = searchInv(foodName);
+        if (foodToEat instanceof Consumable) {
+            inventory.remove(foodToEat);
+            healthPoints += ((Consumable) foodToEat).getHealthGain();
+            healthPoints = Math.min(healthPoints,maxHealthPoints);
+            return foodToEat;
+        }
+        return null;
+    }
+    public ArrayList<Item> getConsumables() {
+        ArrayList<Item> foodItems = new ArrayList<>();
+        for (Item item : inventory) {
+            if(item instanceof Consumable) foodItems.add(item);
+        }
+        return foodItems;
+    }
 }
+
 
