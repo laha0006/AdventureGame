@@ -7,6 +7,7 @@ public class Map {
     public void buildWorld() {
         Room room1 = new Room("Room 1", "The start of your adventures begins here. The room is empty and two doors are visible to the east and south.");
         room1.addItem(new Item("Dead adventurer's [backpack]","backpack"));
+        room1.addItem(new Consumable("Full [wine] bottle","wine",-1));
         Room room2 = new Room("Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
         room2.addItem(new Item("A big strange [bone]", "Bone"));
         Room room3 = new Room("Room 3","Troll market - here you can purchase cheese and hobbit-sandwiches.");

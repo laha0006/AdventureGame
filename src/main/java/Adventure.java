@@ -41,9 +41,26 @@ public class Adventure {
         return player.dropItem(itemName);
     }
 
+    public Item consumeItem(String itemName) {
+        return player.consume(itemName);
+    }
+
     public ArrayList<Item> getPlayerInventory() {
         return player.getInventory();
     }
+
+    public int getPlayerHealthPoints() {
+        return player.getHealthPoints();
+    }
+
+    public int getPlayerMaxHealthPoints() {
+        return player.getMaxHealthPoints();
+    }
+
+    public ArrayList<Item> getPlayerConsumables() {
+        return player.getConsumables();
+    }
+
 }
 
 

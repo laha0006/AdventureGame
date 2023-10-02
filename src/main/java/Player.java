@@ -9,6 +9,8 @@ public class Player {
 
     public Player() {
         inventory = new ArrayList<Item>();
+        maxHealthPoints = 60;
+        healthPoints = 50;
     }
 
     public boolean movePlayer(String direction) {
