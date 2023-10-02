@@ -11,8 +11,8 @@ public class UserInterface {
     public void start() {
         System.out.println("Welcome to the The Game currently know as Adventure Game");
         System.out.println("Write 'help' to show commands");
-        System.out.println("You've entered:  " + adventure.getStartingRoom().getName());
-        System.out.println(adventure.getStartingRoom().getDescription());
+        System.out.println("You've entered:  " + adventure.getCurrentRoomName());
+        System.out.println(adventure.getCurrentRoomDescription());
         while (true) {
             handleInput();
         }
@@ -79,8 +79,9 @@ public class UserInterface {
         } else {
             switch(splitInput[0]) {
                 case "take":
-                    if(adventure.takeItem(splitInput[1])) {
-                        System.out.println("Added " + splitInput[1] + " to inventory.");
+                    Item itemToTake = adventure.takeItem(splitInput[1]);
+                    if(itemToTake != null) {
+                        System.out.println("Added " + itemToTake.getLongName() + " to inventory.");
                     } else {
                         System.out.println(splitInput[1] +" doesn't exist");
                     }

@@ -24,7 +24,7 @@ public class Adventure {
     }
 
     public String getCurrentRoomDescription() {
-        return player.getPlayerPosition().getDescription();
+        return player.getCurrentRoomDescription();
     }
 
     public String getCurrentRoomName() {
@@ -32,9 +32,9 @@ public class Adventure {
     }
 
     public ArrayList<Item> getCurrentRoomLoot() {
-        return player.getPlayerPosition().getLoot();
+        return player.getCurrentRoomLoot();
     }
-    public boolean takeItem(String itemName){
+    public Item takeItem(String itemName){
         return player.takeItem(itemName);
     }
     public Item dropItem(String itemName){

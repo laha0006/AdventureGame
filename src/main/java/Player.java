@@ -42,6 +42,10 @@ public class Player {
         return false;
     }
 
+    public void setCurrentPosition(Room room) {
+        currentPosition = room;
+    }
+
     public Room getPlayerPosition(){
         return currentPosition;
     }
@@ -51,9 +55,9 @@ public class Player {
         if (itemToTake != null) {
             currentPosition.removeItem(itemToTake);
             inventory.add(itemToTake);
-            return true;
+            return itemToTake;
         }
-        return false;
+        return null;
     }
 
     public Item dropItem(String itemName){
