@@ -11,8 +11,8 @@ public class UserInterface {
     public void start() {
         System.out.println("Welcome to the The Game currently know as Adventure Game");
         System.out.println("Write 'help' to show commands");
-        System.out.println("You've entered:  " + adventure.getStartingRoom().getName());
-        System.out.println(adventure.getStartingRoom().getDescription());
+        System.out.println("You've entered:  " + adventure.getCurrentRoomName());
+        System.out.println(adventure.getCurrentRoomDescription());
         while (true) {
             handleInput();
         }
@@ -79,17 +79,19 @@ public class UserInterface {
         } else {
             switch(splitInput[0]) {
                 case "take":
-                    if(adventure.takeItem(splitInput[1])) {
-                        System.out.println("Added " + splitInput[1] + " to inventory.");
+                    Item itemToTake = adventure.takeItem(splitInput[1]);
+                    if(itemToTake != null) {
+                        System.out.println("Added " + itemToTake.getLongName() + " to inventory.");
                     } else {
                         System.out.println(splitInput[1] +" doesn't exist");
                     }
                     break;
                 case "drop":
-                    if(adventure.dropItem(splitInput[1])) {
-                        System.out.println("Dropped " + splitInput[1] + " in " + adventure.getCurrentRoomName());
+                    Item itemToDrop = adventure.dropItem(splitInput[1]);
+                    if(itemToDrop != null) {
+                        System.out.println("Dropped " + itemToDrop.getLongName() + " in " + adventure.getCurrentRoomName());
                     } else {
-                        System.out.println("You don't have that item");
+                        System.out.println("You don't carry " + splitInput[1]);
                     }
                     break;
             }
@@ -101,14 +103,14 @@ public class UserInterface {
         System.out.println("To move in a direction enter 'N', 'S', 'E', 'W' to move north, south, east or west.");
         System.out.println("Enter 'look' to look around at your current location");
         System.out.println("Enter 'inv' or 'inventory' to open your inventory");
-        System.out.println("Enter 'take NAME' to pick-up item");
-        System.out.println("Enter 'drop NAME' to drop item");
+        System.out.println("Enter 'take [item]' to pick-up item");
+        System.out.println("Enter 'drop [item]' to drop item");
     }
 
 
     public void showLoot(ArrayList<Item> loot) {
         if (!loot.isEmpty()) {
-            System.out.println("You found: ");
+            System.out.println("You discover: ");
             if (loot.size() == 1) {
                 System.out.print(loot.get(0).getLongName());
             } else {
@@ -117,7 +119,7 @@ public class UserInterface {
                 }
             }
         } else {
-            System.out.print("You found nothing.");
+            System.out.print("You discover nothing.");
         }
 
     }
@@ -133,7 +135,7 @@ public class UserInterface {
                 }
             }
         } else {
-            System.out.print("You have nothing.");
+            System.out.print("You carry nothing.");
         }
 
     }
