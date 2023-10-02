@@ -9,8 +9,37 @@ public class Player {
         inventory = new ArrayList<Item>();
     }
 
-    public void setCurrentPosition(Room position) {
-        currentPosition = position;
+    public boolean movePlayer(String direction) {
+        switch (direction) {
+            case "north":
+                Room northRoom = currentPosition.getNorth();
+                if (northRoom != null) {
+                    currentPosition = northRoom;
+                    return true;
+                } else return false;
+
+            case "south":
+                Room southRoom = currentPosition.getSouth();
+                if (southRoom != null) {
+                    currentPosition = southRoom;
+                    return true;
+                } else return false;
+
+            case "east":
+                Room eastRoom = currentPosition.getEast();
+                if (eastRoom != null) {
+                    currentPosition = eastRoom;
+                    return true;
+                } else return false;
+
+            case "west":
+                Room westRoom = currentPosition.getWest();
+                if (westRoom != null) {
+                    currentPosition = westRoom;
+                    return true;
+                } else return false;
+        }
+        return false;
     }
 
     public Room getPlayerPosition(){
