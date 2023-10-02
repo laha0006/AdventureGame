@@ -76,6 +76,9 @@ public class UserInterface {
                     break;
                 case "consumables":
                     showInventory(adventure.getPlayerConsumables());
+                case "hp":
+                    System.out.println("You currently have " + adventure.getPlayerHealthPoints() +"HP");
+                    break;
 
             }
         } else {
@@ -100,7 +103,7 @@ public class UserInterface {
                     Item itemToConsume = adventure.consumeItem(splitInput[1]);
                     if(itemToConsume != null) {
                         System.out.println("Consumed " + itemToConsume.getLongName() + " and gained " + ((Consumable) itemToConsume).getHealthGain() + "HP");
-                        System.out.println("Your current health is now " + adventure.getPlayerHealthPoints() + " out of " + adventure.getPlayerMaxHealthPoints() + "HP");
+                        System.out.println("Your current health is now " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
                     } else {
                         System.out.println("You don't carry " + splitInput[1]);
                     }
@@ -117,6 +120,9 @@ public class UserInterface {
         System.out.println("Enter 'inv' or 'inventory' to open your inventory");
         System.out.println("Enter 'take [item]' to pick-up item");
         System.out.println("Enter 'drop [item]' to drop item");
+        System.out.println("Enter 'consumables' for a list of your consumables");
+        System.out.println("Enter 'consume [consumable]' to gain it's effect");
+        System.out.println("Enter 'HP' to show current healthpoints");
     }
 
 
