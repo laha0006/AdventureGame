@@ -117,6 +117,8 @@ public class UserInterface {
         System.out.println("Enter 'inv' or 'inventory' to open your inventory");
         System.out.println("Enter 'take [item]' to pick-up item");
         System.out.println("Enter 'drop [item]' to drop item");
+        System.out.println("Enter 'consumables' for a list of your consumables");
+        System.out.println("Enter 'consume [consumable]' to gain it's effect");
     }
 
 
