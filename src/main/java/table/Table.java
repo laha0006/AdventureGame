@@ -32,8 +32,6 @@ public class Table {
     private final int size;
     private int length;
 
-    private StringBuilder sb;
-
     public Table(String header, ArrayList<String> columns) {
         this.header = header;
         this.columns = columns;
