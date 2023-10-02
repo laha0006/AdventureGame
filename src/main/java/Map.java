@@ -18,6 +18,7 @@ public class Map {
         treasureRoom.addItem(new Item ("The [Treasure] of Adventure Game", "Treasure"));
         Room room6 = new Room("Room 6","Old tracks for minecarts rusted on the ground, the stench of metal and rust lingers.");
         room6.addItem(new Item ("A rusty and dusty [key]","Key"));
+        room6.addItem(new Consumable ("Bag of [Doritos]", "Doritos", 2));
         Room room7 = new Room("Room 7", "In the middle of the room a water fountain is placed. Next to it is a bucket and some rope.");
         room7.addItem(new Item("[Bucket]","Bucket"));
         room7.addItem(new Item("[Rope]","Rope"));
