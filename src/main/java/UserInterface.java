@@ -76,6 +76,8 @@ public class UserInterface {
                     break;
                 case "consumables":
                     showInventory(adventure.getPlayerConsumables());
+                case "HP":
+                    System.out.println("You currently have " + adventure.getPlayerHealthPoints()+"HP");
 
             }
         } else {
@@ -119,6 +121,7 @@ public class UserInterface {
         System.out.println("Enter 'drop [item]' to drop item");
         System.out.println("Enter 'consumables' for a list of your consumables");
         System.out.println("Enter 'consume [consumable]' to gain it's effect");
+        System.out.println("Enter 'HP' to show current healthpoints");
     }
 
 
