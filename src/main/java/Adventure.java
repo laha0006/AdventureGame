@@ -19,10 +19,6 @@ public class Adventure {
         return map.getStartingRoom();
     }
 
-    public Room getPlayerPosition() {
-        return player.getPlayerPosition();
-    }
-
     public boolean movePlayer(String direction) {
         return player.movePlayer(direction);
     }
@@ -32,7 +28,7 @@ public class Adventure {
     }
 
     public String getCurrentRoomName() {
-        return player.getPlayerPosition().getName();
+        return player.getCurrentRoomName();
     }
 
     public ArrayList<Item> getCurrentRoomLoot() {
@@ -41,7 +37,7 @@ public class Adventure {
     public boolean takeItem(String itemName){
         return player.takeItem(itemName);
     }
-    public boolean dropItem(String itemName){
+    public Item dropItem(String itemName){
         return player.dropItem(itemName);
     }
 

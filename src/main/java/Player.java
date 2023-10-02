@@ -46,7 +46,7 @@ public class Player {
         return currentPosition;
     }
 
-    public boolean takeItem(String itemName){
+    public Item takeItem(String itemName){
         Item itemToTake = currentPosition.searchRoom(itemName);
         if (itemToTake != null) {
             currentPosition.removeItem(itemToTake);
@@ -56,14 +56,14 @@ public class Player {
         return false;
     }
 
-    public boolean dropItem(String itemName){
+    public Item dropItem(String itemName){
         Item itemToDrop = searchInv(itemName);
         if (itemToDrop != null) {
             inventory.remove(itemToDrop);
             currentPosition.addItem(itemToDrop);
-            return true;
+            return itemToDrop;
         }
-        return false;
+        return null;
     }
 
     public Item searchInv(String itemName) {
@@ -77,6 +77,18 @@ public class Player {
 
     public ArrayList<Item> getInventory() {
         return inventory;
+    }
+
+    public String getCurrentRoomDescription() {
+        return currentPosition.getDescription();
+    }
+
+    public String getCurrentRoomName() {
+        return currentPosition.getName();
+    }
+
+    public ArrayList<Item> getCurrentRoomLoot() {
+        return currentPosition.getLoot();
     }
 }
 
