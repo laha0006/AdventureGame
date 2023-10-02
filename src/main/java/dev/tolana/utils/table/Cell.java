@@ -1,4 +1,4 @@
-package table;
+package dev.tolana.utils.table;
 
 public class Cell {
     private int intValue;
