@@ -1,4 +1,4 @@
-package table;
+package dev.tolana.utils.table;
 
 import java.util.ArrayList;
 
@@ -204,8 +204,8 @@ public class Table {
                 } else if (cell.isSTRING()) {
                     rowsString.append(String.format(template.toString(), cell.getStringValue()));
                 } else {
-                    //TODO Make more general. overload table.Cell constructor
-                    //to facilitate a new table.Cell(true,"TrueString","FalseString");
+                    //TODO Make more general. overload dev.tolana.utils.table.Cell constructor
+                    //to facilitate a new dev.tolana.utils.table.Cell(true,"TrueString","FalseString");
                     String humanStatus = cell.getBool() ? "YES" : "NO";
                     rowsString.append(String.format(template.toString(), humanStatus));
                 }
