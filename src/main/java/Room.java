@@ -1,5 +1,3 @@
-package org.example;
-
 import java.util.ArrayList;
 
 public class Room {
@@ -26,6 +24,15 @@ public class Room {
 
     public void removeItem(Item item) {
         loot.remove(item);
+    }
+
+    public Item searchRoom(String itemName) {
+        for(Item item : loot) {
+            if(item.getShortName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     //Set metoder

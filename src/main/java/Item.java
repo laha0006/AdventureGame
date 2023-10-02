@@ -1,5 +1,3 @@
-package org.example;
-
 public class Item {
     private final String longName;
     private final String shortName;
