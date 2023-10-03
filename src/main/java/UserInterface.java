@@ -26,7 +26,7 @@ public class UserInterface {
         if (splitInput.length == 1) {
             switch (splitInput[0]) {
                 case "n", "north":
-                    if (adventure.movePlayer("north")) {
+                    if (adventure.movePlayer(Direction.NORTH)) {
                         System.out.println("You went north to " + adventure.getCurrentRoomName());
                         System.out.println(adventure.getCurrentRoomDescription());
                         break;
@@ -36,7 +36,7 @@ public class UserInterface {
                     }
 
                 case "s", "south":
-                    if (adventure.movePlayer("south")) {
+                    if (adventure.movePlayer(Direction.SOUTH)) {
                         System.out.println("You went south to " + adventure.getCurrentRoomName());
                         System.out.println(adventure.getCurrentRoomDescription());
                         break;
@@ -46,7 +46,7 @@ public class UserInterface {
                         break;
                     }
                 case "e", "east":
-                    if (adventure.movePlayer("east")) {
+                    if (adventure.movePlayer(Direction.EAST)) {
                         System.out.println("You went east to " + adventure.getCurrentRoomName());
                         System.out.println(adventure.getCurrentRoomDescription());
                         break;
@@ -55,7 +55,7 @@ public class UserInterface {
                         break;
                     }
                 case "w", "west":
-                    if (adventure.movePlayer("west")) {
+                    if (adventure.movePlayer(Direction.WEST)) {
                         System.out.println("You went west to " + adventure.getCurrentRoomName());
                         System.out.println(adventure.getCurrentRoomDescription());
                         break;
@@ -100,15 +100,20 @@ public class UserInterface {
                     }
                     break;
                 case "consume", "eat":
-                    Item itemToConsume = adventure.consumeItem(splitInput[1]);
-                    if(itemToConsume != null) {
-                        System.out.println("Consumed " + itemToConsume.getLongName() + " and gained " + ((Consumable) itemToConsume).getHealthGain() + "HP");
-                        System.out.println("Your current health is now " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
-                    } else {
-                        System.out.println("You don't carry " + splitInput[1]);
-                    }
-                    break;
+                    ReturnConsumable itemToConsume = adventure.consumeItem(splitInput[1]);
 
+                    switch(itemToConsume.getStatus()) {
+                        case CONSUMABLE:
+                            System.out.println("Consumed " + itemToConsume.getOutputText() + " and gained " + itemToConsume.getItemHealthGain() + "HP");
+                            System.out.println("Your current health is now " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
+                            break;
+                        case NON_CONSUMABLE:
+                            System.out.println("You can't consume " + itemToConsume.getOutputText());
+                            break;
+                        case MISSING:
+                            System.out.println("You don't carry " + splitInput[1]);
+                            break;
+                    }
             }
         }
     }

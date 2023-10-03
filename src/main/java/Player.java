@@ -13,30 +13,30 @@ public class Player {
         healthPoints = 50;
     }
 
-    public boolean movePlayer(String direction) {
+    public boolean movePlayer(Direction direction) {
         switch (direction) {
-            case "north":
+            case NORTH:
                 Room northRoom = currentPosition.getNorth();
                 if (northRoom != null) {
                     currentPosition = northRoom;
                     return true;
                 } else return false;
 
-            case "south":
+            case SOUTH:
                 Room southRoom = currentPosition.getSouth();
                 if (southRoom != null) {
                     currentPosition = southRoom;
                     return true;
                 } else return false;
 
-            case "east":
+            case EAST:
                 Room eastRoom = currentPosition.getEast();
                 if (eastRoom != null) {
                     currentPosition = eastRoom;
                     return true;
                 } else return false;
 
-            case "west":
+            case WEST:
                 Room westRoom = currentPosition.getWest();
                 if (westRoom != null) {
                     currentPosition = westRoom;
@@ -107,15 +107,28 @@ public class Player {
         return maxHealthPoints;
     }
 
-    public Item consume(String foodName) {
+    public ReturnConsumable consume(String foodName) {
+        ReturnConsumable result = new ReturnConsumable();
         Item foodToEat = searchInv(foodName);
         if (foodToEat instanceof Consumable) {
             inventory.remove(foodToEat);
             healthPoints += ((Consumable) foodToEat).getHealthGain();
             healthPoints = Math.min(healthPoints,maxHealthPoints);
-            return foodToEat;
+            result.setStatus(ReturnStatus.CONSUMABLE);
+            result.setOutputText(foodToEat.getLongName());
+            result.setItem(foodToEat);
+            return result;
         }
-        return null;
+        if(foodToEat == null) {
+            result.setStatus(ReturnStatus.MISSING);
+            result.setOutputText(foodName);
+            result.setItem(null);
+            return result;
+        }
+        result.setStatus(ReturnStatus.NON_CONSUMABLE);
+        result.setOutputText(foodToEat.getLongName());
+        result.setItem(foodToEat);
+        return result;
     }
     public ArrayList<Item> getConsumables() {
         ArrayList<Item> foodItems = new ArrayList<>();
