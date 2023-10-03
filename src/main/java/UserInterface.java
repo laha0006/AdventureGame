@@ -26,7 +26,7 @@ public class UserInterface {
         if (splitInput.length == 1) {
             switch (splitInput[0]) {
                 case "n", "north":
-                    if (adventure.movePlayer("north")) {
+                    if (adventure.movePlayer(Direction.NORTH)) {
                         System.out.println("You went north to " + adventure.getCurrentRoomName());
                         System.out.println(adventure.getCurrentRoomDescription());
                         break;
@@ -36,7 +36,7 @@ public class UserInterface {
                     }
 
                 case "s", "south":
-                    if (adventure.movePlayer("south")) {
+                    if (adventure.movePlayer(Direction.SOUTH)) {
                         System.out.println("You went south to " + adventure.getCurrentRoomName());
                         System.out.println(adventure.getCurrentRoomDescription());
                         break;
