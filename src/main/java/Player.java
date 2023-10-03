@@ -22,7 +22,7 @@ public class Player {
                     return true;
                 } else return false;
 
-            case "south":
+            case SOUTH:
                 Room southRoom = currentPosition.getSouth();
                 if (southRoom != null) {
                     currentPosition = southRoom;
@@ -36,7 +36,7 @@ public class Player {
                     return true;
                 } else return false;
 
-            case "west":
+            case WEST:
                 Room westRoom = currentPosition.getWest();
                 if (westRoom != null) {
                     currentPosition = westRoom;
@@ -114,7 +114,10 @@ public class Player {
             inventory.remove(foodToEat);
             healthPoints += ((Consumable) foodToEat).getHealthGain();
             healthPoints = Math.min(healthPoints,maxHealthPoints);
-            return foodToEat;
+            result.setStatus(ReturnStatus.CONSUMABLE);
+            result.setOutputText(foodToEat.getLongName());
+            result.setItem(foodToEat);
+            return result;
         }
         if(foodToEat == null) {
             result.setStatus(ReturnStatus.MISSING);
