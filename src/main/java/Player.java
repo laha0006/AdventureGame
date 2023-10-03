@@ -13,9 +13,9 @@ public class Player {
         healthPoints = 50;
     }
 
-    public boolean movePlayer(String direction) {
+    public boolean movePlayer(Direction direction) {
         switch (direction) {
-            case "north":
+            case NORTH:
                 Room northRoom = currentPosition.getNorth();
                 if (northRoom != null) {
                     currentPosition = northRoom;
@@ -107,7 +107,8 @@ public class Player {
         return maxHealthPoints;
     }
 
-    public Item consume(String foodName) {
+    public ReturnConsumable consume(String foodName) {
+        ReturnConsumable result = new ReturnConsumable();
         Item foodToEat = searchInv(foodName);
         if (foodToEat instanceof Consumable) {
             inventory.remove(foodToEat);
@@ -115,7 +116,16 @@ public class Player {
             healthPoints = Math.min(healthPoints,maxHealthPoints);
             return foodToEat;
         }
-        return null;
+        if(foodToEat == null) {
+            result.setStatus(ReturnStatus.MISSING);
+            result.setOutputText(foodName);
+            result.setItem(null);
+            return result;
+        }
+        result.setStatus(ReturnStatus.NON_CONSUMABLE);
+        result.setOutputText(foodToEat.getLongName());
+        result.setItem(foodToEat);
+        return result;
     }
     public ArrayList<Item> getConsumables() {
         ArrayList<Item> foodItems = new ArrayList<>();

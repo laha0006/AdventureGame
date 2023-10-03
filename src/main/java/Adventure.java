@@ -19,7 +19,7 @@ public class Adventure {
         return map.getStartingRoom();
     }
 
-    public boolean movePlayer(String direction) {
+    public boolean movePlayer(Direction direction) {
         return player.movePlayer(direction);
     }
 
@@ -41,7 +41,7 @@ public class Adventure {
         return player.dropItem(itemName);
     }
 
-    public Item consumeItem(String itemName) {
+    public ReturnConsumable consumeItem(String itemName) {
         return player.consume(itemName);
     }
 
