@@ -29,7 +29,7 @@ public class Player {
                     return true;
                 } else return false;
 
-            case "east":
+            case EAST:
                 Room eastRoom = currentPosition.getEast();
                 if (eastRoom != null) {
                     currentPosition = eastRoom;

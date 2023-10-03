@@ -46,7 +46,7 @@ public class UserInterface {
                         break;
                     }
                 case "e", "east":
-                    if (adventure.movePlayer("east")) {
+                    if (adventure.movePlayer(Direction.EAST)) {
                         System.out.println("You went east to " + adventure.getCurrentRoomName());
                         System.out.println(adventure.getCurrentRoomDescription());
                         break;
