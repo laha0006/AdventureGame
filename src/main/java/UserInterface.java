@@ -116,6 +116,44 @@ public class UserInterface {
                             break;
 
                     }
+                    break;
+                case "equip":
+                    Status itemToEquip = adventure.equip(splitInput[1]);
+
+                    switch (itemToEquip){
+                        case EQUIPPABLE:
+                            System.out.println("You equipped " + splitInput[1]);
+                            break;
+                        case NON_EQUIPPABLE:
+                            System.out.println(splitInput[1] + " is not Equippable ");
+                            break;
+                        case BROKEN:
+                            System.out.println(splitInput[1] + " is broken");
+                            break;
+                        case MISSING:
+                            System.out.println(splitInput[1] + " is missing ");
+                            break;
+
+                    }
+                    break;
+                case "attack":
+                    ReturnAttack attack = adventure.attack();
+
+                    switch(attack.getStatus()) {
+                        case MISSING:
+                            System.out.println("You flail your fists in the air awkwardly dealing no damage. ");
+                            break;
+                        case BROKEN:
+                            System.out.println(attack.getOutputText() + " is broken.");
+                            break;
+                        case SUCCESS:
+                            System.out.println("You attacked with " + attack.getOutputText() + " and dealt " + attack.getDamage() + " damage to the air. Good job!");
+                            if (attack.isBroken())
+                                System.out.println("Your " + attack.getOutputText() + " broke");
+
+                            break;
+                    }
+                    break;
             }
         }
     }
