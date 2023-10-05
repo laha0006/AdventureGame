@@ -139,6 +139,35 @@ public class Player {
         }
         return foodItems;
     }
+
+    public Status equip(String itemName) {
+        Item itemToEquip = searchInv(itemName);
+        if(itemToEquip == null) return Status.MISSING;
+        if(!(itemToEquip instanceof Weapon)) return  Status.NON_EQUIPPABLE;
+        if( ((Weapon) itemToEquip).isBroken()) return Status.BROKEN;
+        weaponSlot1 = (Weapon) itemToEquip;
+        return Status.EQUIPPABLE;
+
+    }
+
+    public ReturnAttack attack() {
+        ReturnAttack result = new ReturnAttack();
+        if(weaponSlot1 == null) {
+            result.setStatus(Status.MISSING);
+            return result;
+        }
+        if(weaponSlot1.isBroken()){
+            result.setOutputText(weaponSlot1.getLongName());
+            result.setStatus(Status.BROKEN);
+            return result;
+        }
+        result.setDamage(weaponSlot1.attack());
+        result.setOutputText(weaponSlot1.getShortName());
+        result.setStatus(Status.SUCCESS);
+        result.setBroken(weaponSlot1.isBroken());
+        return result;
+    }
+
 }
 
 
