@@ -76,6 +76,7 @@ public class UserInterface {
                     break;
                 case "consumables":
                     showInventory(adventure.getPlayerConsumables());
+                    break;
                 case "hp":
                     System.out.println("You currently have " + adventure.getPlayerHealthPoints() +"HP");
                     break;
@@ -113,6 +114,7 @@ public class UserInterface {
                         case MISSING:
                             System.out.println("You don't carry " + splitInput[1]);
                             break;
+
                     }
             }
         }

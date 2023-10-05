@@ -1,21 +1,21 @@
 public class ReturnConsumable {
-    private ReturnStatus status;
+    private Status status;
     private String outputText;
     private Item item;
 
     public ReturnConsumable() {}
 
-    public ReturnConsumable(ReturnStatus status, String outputText, Item item) {
+    public ReturnConsumable(Status status, String outputText, Item item) {
         this.status = status;
         this.outputText = outputText;
         this.item = item;
     }
 
-    public ReturnStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(ReturnStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
