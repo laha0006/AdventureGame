@@ -5,6 +5,8 @@ public class Player {
     private ArrayList<Item> inventory;
     private int maxHealthPoints = 60;
     private int healthPoints;
+    private Weapon weaponSlot1;
+    private Weapon weaponSlot2;
     //inventory
 
     public Player() {
@@ -69,6 +71,9 @@ public class Player {
         if (itemToDrop != null) {
             inventory.remove(itemToDrop);
             currentPosition.addItem(itemToDrop);
+            if(weaponSlot1 != null && itemToDrop.getLongName().equals(weaponSlot1.getLongName())) {
+                weaponSlot1 = null;
+            }
             return itemToDrop;
         }
         return null;
@@ -114,18 +119,18 @@ public class Player {
             inventory.remove(foodToEat);
             healthPoints += ((Consumable) foodToEat).getHealthGain();
             healthPoints = Math.min(healthPoints,maxHealthPoints);
-            result.setStatus(ReturnStatus.CONSUMABLE);
+            result.setStatus(Status.CONSUMABLE);
             result.setOutputText(foodToEat.getLongName());
             result.setItem(foodToEat);
             return result;
         }
         if(foodToEat == null) {
-            result.setStatus(ReturnStatus.MISSING);
+            result.setStatus(Status.MISSING);
             result.setOutputText(foodName);
             result.setItem(null);
             return result;
         }
-        result.setStatus(ReturnStatus.NON_CONSUMABLE);
+        result.setStatus(Status.NON_CONSUMABLE);
         result.setOutputText(foodToEat.getLongName());
         result.setItem(foodToEat);
         return result;
@@ -137,6 +142,35 @@ public class Player {
         }
         return foodItems;
     }
+
+    public Status equip(String itemName) {
+        Item itemToEquip = searchInv(itemName);
+        if(itemToEquip == null) return Status.MISSING;
+        if(!(itemToEquip instanceof Weapon)) return  Status.NON_EQUIPPABLE;
+        if( ((Weapon) itemToEquip).isBroken()) return Status.BROKEN;
+        weaponSlot1 = (Weapon) itemToEquip;
+        return Status.EQUIPPABLE;
+
+    }
+
+    public ReturnAttack attack() {
+        ReturnAttack result = new ReturnAttack();
+        if(weaponSlot1 == null) {
+            result.setStatus(Status.MISSING);
+            return result;
+        }
+        if(weaponSlot1.isBroken()){
+            result.setOutputText(weaponSlot1.getLongName());
+            result.setStatus(Status.BROKEN);
+            return result;
+        }
+        result.setDamage(weaponSlot1.attack());
+        result.setOutputText(weaponSlot1.getShortName());
+        result.setStatus(Status.SUCCESS);
+        result.setBroken(weaponSlot1.isBroken());
+        return result;
+    }
+
 }
 
 
