@@ -61,6 +61,15 @@ public class Adventure {
         return player.getConsumables();
     }
 
+    public Status equip(String itemName) {
+        return player.equip(itemName);
+    }
+
+    public ReturnAttack attack() {
+        return player.attack();
+
+    }
+
 }
 
 

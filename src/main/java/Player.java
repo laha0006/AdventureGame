@@ -71,6 +71,9 @@ public class Player {
         if (itemToDrop != null) {
             inventory.remove(itemToDrop);
             currentPosition.addItem(itemToDrop);
+            if(weaponSlot1 != null && itemToDrop.getLongName().equals(weaponSlot1.getLongName())) {
+                weaponSlot1 = null;
+            }
             return itemToDrop;
         }
         return null;
