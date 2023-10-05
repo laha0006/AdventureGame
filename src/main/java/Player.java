@@ -5,6 +5,8 @@ public class Player {
     private ArrayList<Item> inventory;
     private int maxHealthPoints = 60;
     private int healthPoints;
+    private Weapon weaponSlot1;
+    private Weapon weaponSlot2;
     //inventory
 
     public Player() {
@@ -114,18 +116,18 @@ public class Player {
             inventory.remove(foodToEat);
             healthPoints += ((Consumable) foodToEat).getHealthGain();
             healthPoints = Math.min(healthPoints,maxHealthPoints);
-            result.setStatus(ReturnStatus.CONSUMABLE);
+            result.setStatus(Status.CONSUMABLE);
             result.setOutputText(foodToEat.getLongName());
             result.setItem(foodToEat);
             return result;
         }
         if(foodToEat == null) {
-            result.setStatus(ReturnStatus.MISSING);
+            result.setStatus(Status.MISSING);
             result.setOutputText(foodName);
             result.setItem(null);
             return result;
         }
-        result.setStatus(ReturnStatus.NON_CONSUMABLE);
+        result.setStatus(Status.NON_CONSUMABLE);
         result.setOutputText(foodToEat.getLongName());
         result.setItem(foodToEat);
         return result;
