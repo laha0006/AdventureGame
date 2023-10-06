@@ -44,6 +44,20 @@ public class Player {
                     currentPosition = westRoom;
                     return true;
                 } else return false;
+
+            case UP:
+                Room upRoom = currentPosition.getUp();
+                if (upRoom != null) {
+                    currentPosition = upRoom;
+                    return  true;
+                }else return false;
+
+            case DOWN:
+                Room downRoom = currentPosition.getDown();
+                if (downRoom != null) {
+                    currentPosition = downRoom;
+                    return true;
+                } else return false;
         }
         return false;
     }
@@ -168,6 +182,8 @@ public class Player {
         result.setOutputText(weaponSlot1.getShortName());
         result.setStatus(Status.SUCCESS);
         result.setBroken(weaponSlot1.isBroken());
+        result.setLostEffect(attackPower);
+        attackPower = 0;
         return result;
     }
 

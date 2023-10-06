@@ -9,4 +9,8 @@ public class Consumable extends Item {
     public int getHealthGain() {
         return healthGain;
     }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
 }
