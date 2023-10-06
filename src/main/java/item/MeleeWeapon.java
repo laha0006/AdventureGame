@@ -1,3 +1,5 @@
+package item;
+
 public class MeleeWeapon extends Weapon {
     private int attackPower;
     public MeleeWeapon(String longName, String shortName, int damage, int durability, int attackPower) {
