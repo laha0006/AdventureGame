@@ -128,6 +128,9 @@ public class UserInterface {
                         case CONSUMABLE:
                             System.out.println("Consumed " + itemToConsume.getOutputText() + " and gained " + itemToConsume.getItemHealthGain() + "HP");
                             System.out.println("Your current health is now " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
+                            if(itemToConsume.getEffect() != 0) {
+                                System.out.println("You gained " + itemToConsume.getEffect() + " attack power.");
+                            }
                             break;
                         case NON_CONSUMABLE:
                             System.out.println("You can't consume " + itemToConsume.getOutputText());
@@ -169,6 +172,9 @@ public class UserInterface {
                             break;
                         case SUCCESS:
                             System.out.println("You attacked with " + attack.getOutputText() + " and dealt " + attack.getDamage() + " damage to the air. Good job!");
+                            if(attack.getLostEffect() != 0) {
+                                System.out.println("You feel normal.");
+                            }
                             if (attack.isBroken())
                                 System.out.println("Your " + attack.getOutputText() + " broke");
 
@@ -213,8 +219,9 @@ public class UserInterface {
     public void showInventory(ArrayList<Item> inventory) {
         if (!inventory.isEmpty()) {
             System.out.println("You are carrying: ");
+            int count = 1;
             if (inventory.size() == 1) {
-                System.out.print(inventory.get(0).getLongName());
+                System.out.print(inventory.get(0).getLongName()+"\n");
             } else {
                 for (Item item : inventory) {
                     if(count != inventory.size()) {

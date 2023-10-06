@@ -63,6 +63,20 @@ public class Room {
             west.setEast(this);
         }
     }
+
+    public void setUp(Room up) {
+        this.up = up;
+        if(up.getDown() == null) {
+            up.setDown(this);
+        }
+    }
+
+    public void setDown(Room down){
+        this.down = down;
+        if (down.getUp() == null){
+            down.setUp(this);
+        }
+    }
     //Get metoder
 
     public String getName() {

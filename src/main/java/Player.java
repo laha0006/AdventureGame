@@ -5,6 +5,7 @@ public class Player {
     private ArrayList<Item> inventory;
     private int maxHealthPoints = 60;
     private int healthPoints;
+    private int attackPower;
     private Weapon weaponSlot1;
     private Weapon weaponSlot2;
     //inventory
@@ -133,6 +134,10 @@ public class Player {
             inventory.remove(foodToEat);
             healthPoints += ((Consumable) foodToEat).getHealthGain();
             healthPoints = Math.min(healthPoints,maxHealthPoints);
+            if (((Consumable) foodToEat).getAttackPower() != 0) {
+                attackPower += (((Consumable) foodToEat).getAttackPower());
+                result.setEffect(((Consumable) foodToEat).getAttackPower());
+            }
             result.setStatus(Status.CONSUMABLE);
             result.setOutputText(foodToEat.getLongName());
             result.setItem(foodToEat);
@@ -178,7 +183,7 @@ public class Player {
             result.setStatus(Status.BROKEN);
             return result;
         }
-        result.setDamage(weaponSlot1.attack());
+        result.setDamage(weaponSlot1.attack()+attackPower);
         result.setOutputText(weaponSlot1.getShortName());
         result.setStatus(Status.SUCCESS);
         result.setBroken(weaponSlot1.isBroken());

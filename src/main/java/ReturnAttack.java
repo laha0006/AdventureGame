@@ -3,6 +3,7 @@ public class ReturnAttack {
         private String outputText;
         private int damage;
         private boolean broken;
+        private int lostEffect;
 
         public ReturnAttack() {}
 
