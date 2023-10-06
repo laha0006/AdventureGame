@@ -1,4 +1,4 @@
-package table;
+package ui.table;
 
 import java.util.ArrayList;
 
@@ -204,8 +204,8 @@ public class Table {
                 } else if (cell.isSTRING()) {
                     rowsString.append(String.format(template.toString(), cell.getStringValue()));
                 } else {
-                    //TODO Make more general. overload table.Cell constructor
-                    //to facilitate a new table.Cell(true,"TrueString","FalseString");
+                    //TODO Make more general. overload ui.table.Cell constructor
+                    //to facilitate a new ui.table.Cell(true,"TrueString","FalseString");
                     String humanStatus = cell.getBool() ? "YES" : "NO";
                     rowsString.append(String.format(template.toString(), humanStatus));
                 }
