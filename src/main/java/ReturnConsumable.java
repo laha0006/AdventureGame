@@ -2,6 +2,7 @@ public class ReturnConsumable {
     private Status status;
     private String outputText;
     private Item item;
+    private int effect;
 
     public ReturnConsumable() {}
 
@@ -40,6 +41,13 @@ public class ReturnConsumable {
             return consumable.getHealthGain();
         }
         return 0;
+    }
+    public void setEffect(int effectText) {
+        this.effect = effectText;
+    }
+
+    public int getEffect() {
+        return effect;
     }
 
 }

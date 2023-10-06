@@ -63,6 +63,27 @@ public class UserInterface {
                         System.out.println("You can't go that way.");
                         break;
                     }
+
+                case "up":
+                    if (adventure.movePlayer(Direction.UP)) {
+                        System.out.println("You went up to " + adventure.getCurrentRoomName());
+                        System.out.println(adventure.getCurrentRoomDescription());
+                        break;
+                    } else {
+                        System.out.println("You can't go that way.");
+                        break;
+                    }
+
+                case "down":
+                    if (adventure.movePlayer(Direction.DOWN)) {
+                        System.out.println("You went down to " + adventure.getCurrentRoomName());
+                        System.out.println(adventure.getCurrentRoomDescription());
+                        break;
+                    } else {
+                        System.out.println("You can't go that way.");
+                        break;
+                    }
+
                 case "look":
                     showLoot(adventure.getCurrentRoomLoot());
                     System.out.println("\n" + adventure.getCurrentRoomDescription());
@@ -100,7 +121,7 @@ public class UserInterface {
                         System.out.println("You don't carry " + splitInput[1]);
                     }
                     break;
-                case "consume", "eat":
+                case "consume", "eat", "inject", "sniff", "drink":
                     ReturnConsumable itemToConsume = adventure.consumeItem(splitInput[1]);
 
                     switch(itemToConsume.getStatus()) {
@@ -125,7 +146,7 @@ public class UserInterface {
                             System.out.println("You equipped " + splitInput[1]);
                             break;
                         case NON_EQUIPPABLE:
-                            System.out.println(splitInput[1] + " is not Equippable ");
+                            System.out.println(splitInput[1] + " is not equippable ");
                             break;
                         case BROKEN:
                             System.out.println(splitInput[1] + " is broken");
@@ -169,7 +190,7 @@ public class UserInterface {
         System.out.println("Enter 'consume [consumable]' to gain it's effect");
         System.out.println("Enter 'HP' to show current healthpoints");
         System.out.println("Enter 'equip' to equip a weapon");
-        System.out.println("Enter 'attack' to attack an enemy");
+        System.out.println("Enter 'attack [anything]' to attack an enemy");
     }
 
 
@@ -196,7 +217,12 @@ public class UserInterface {
                 System.out.print(inventory.get(0).getLongName());
             } else {
                 for (Item item : inventory) {
-                    System.out.print(item.getLongName() + ", ");
+                    if(count != inventory.size()) {
+                        System.out.print(item.getLongName() + ", ");
+                        count++;
+                    } else {
+                        System.out.print("and " + item.getLongName() + ".\n");
+                    }
                 }
             }
         } else {

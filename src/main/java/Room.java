@@ -65,7 +65,6 @@ public class Room {
     }
     //Get metoder
 
-
     public String getName() {
         return name;
     }
@@ -84,6 +83,12 @@ public class Room {
 
     public Room getWest() {
         return west;
+    }
+    public Room getUp() {
+        return up;
+    }
+    public Room getDown() {
+        return down;
     }
 
     public String getDescription() {
