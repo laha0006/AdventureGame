@@ -1,4 +1,4 @@
-package dev.tolana.utils.table;
+package table;
 
 import java.util.ArrayList;
 
