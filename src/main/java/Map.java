@@ -9,7 +9,8 @@ public class Map {
         room1.addItem(new Item("Dead adventurer's [backpack]","backpack"));
         room1.addItem(new Consumable("Full [wine] bottle","wine",-1, 2));
 
-        Room room2 = new Room("Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");room2.addItem(new MeleeWeapon("A big strange [bone]", "Bone", 2,5, 0));
+        Room room2 = new Room("Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
+        room2.addItem(new MeleeWeapon("A big strange [bone]", "Bone", 2,5, 0));
 
         Room room3 = new Room("Room 3","Troll market - here you can purchase cheese and hobbit-sandwiches.");
         room3.addItem(new Consumable("Freshly made hobbit-[sandwich]", "sandwich", 10));

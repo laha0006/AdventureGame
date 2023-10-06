@@ -9,6 +9,8 @@ public class Room {
     private Room south;
     private Room east;
     private Room west;
+    private Room up;
+    private Room down;
 
     //Array<Item> loot;
 
