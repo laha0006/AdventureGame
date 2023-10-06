@@ -44,6 +44,14 @@ public class ReturnAttack {
         public void setBroken(boolean broken) {
             this.broken = broken;
         }
+
+    public int getLostEffect() {
+        return lostEffect;
+    }
+
+    public void setLostEffect(int lostEffect) {
+        this.lostEffect = lostEffect;
+    }
 }
 
 
