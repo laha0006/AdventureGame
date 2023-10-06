@@ -1,3 +1,10 @@
+package ui;
+
+import data.*;
+import game.Adventure;
+import item.Item;
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +16,7 @@ public class UserInterface {
     }
 
     public void start() {
-        System.out.println("Welcome to the The Game currently know as Adventure Game");
+        System.out.println("Welcome to the The Game currently know as game.Adventure Game");
         System.out.println("Write 'help' to show commands");
         System.out.println("You've entered:  " + adventure.getCurrentRoomName());
         System.out.println(adventure.getCurrentRoomDescription());
