@@ -1,3 +1,5 @@
+package item;
+
 public class RangedWeapon extends Weapon{
     private int range;
 

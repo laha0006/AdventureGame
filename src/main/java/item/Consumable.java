@@ -1,3 +1,5 @@
+package item;
+
 public class Consumable extends Item {
     private final int healthGain;
     private final int attackPower;
