@@ -1,3 +1,8 @@
+package data;
+
+import item.Consumable;
+import item.Item;
+
 public class ReturnConsumable {
     private Status status;
     private String outputText;

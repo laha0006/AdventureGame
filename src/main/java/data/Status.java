@@ -1,3 +1,5 @@
+package data;
+
 public enum Status {
     CONSUMABLE,
     NON_CONSUMABLE,
