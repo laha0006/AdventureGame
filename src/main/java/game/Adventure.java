@@ -1,3 +1,11 @@
+package game;
+
+import data.Direction;
+import data.ReturnAttack;
+import data.ReturnConsumable;
+import data.Status;
+import item.Item;
+
 import java.util.ArrayList;
 
 public class Adventure {

@@ -1,3 +1,13 @@
+package game;
+
+import data.Direction;
+import data.ReturnAttack;
+import data.ReturnConsumable;
+import data.Status;
+import item.Consumable;
+import item.Item;
+import item.Weapon;
+
 import java.util.ArrayList;
 
 public class Player {
