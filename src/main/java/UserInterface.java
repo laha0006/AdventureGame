@@ -168,6 +168,8 @@ public class UserInterface {
         System.out.println("Enter 'consumables' for a list of your consumables");
         System.out.println("Enter 'consume [consumable]' to gain it's effect");
         System.out.println("Enter 'HP' to show current healthpoints");
+        System.out.println("Enter 'equip' to equip a weapon");
+        System.out.println("Enter 'attack' to attack an enemy");
     }
 
 
