@@ -3,6 +3,7 @@ public class ReturnAttack {
         private String outputText;
         private int damage;
         private boolean broken;
+        private int lostEffect;
 
         public ReturnAttack() {}
 
@@ -43,6 +44,14 @@ public class ReturnAttack {
         public void setBroken(boolean broken) {
             this.broken = broken;
         }
+
+    public int getLostEffect() {
+        return lostEffect;
+    }
+
+    public void setLostEffect(int lostEffect) {
+        this.lostEffect = lostEffect;
+    }
 }
 
 

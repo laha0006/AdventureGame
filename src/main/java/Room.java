@@ -9,6 +9,8 @@ public class Room {
     private Room south;
     private Room east;
     private Room west;
+    private Room up;
+    private Room down;
 
     //Array<Item> loot;
 
@@ -63,8 +65,21 @@ public class Room {
             west.setEast(this);
         }
     }
-    //Get metoder
 
+    public void setUp(Room up) {
+        this.up = up;
+        if(up.getDown() == null) {
+            up.setDown(this);
+        }
+    }
+
+    public void setDown(Room down){
+        this.down = down;
+        if (down.getUp() == null){
+            down.setUp(this);
+        }
+    }
+    //Get metoder
 
     public String getName() {
         return name;
@@ -84,6 +99,12 @@ public class Room {
 
     public Room getWest() {
         return west;
+    }
+    public Room getUp() {
+        return up;
+    }
+    public Room getDown() {
+        return down;
     }
 
     public String getDescription() {
