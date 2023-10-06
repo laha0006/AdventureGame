@@ -1,5 +1,3 @@
-package dev.tolana.utils;
-
 public class Color {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
