@@ -18,7 +18,7 @@ public class Room {
     private Room up;
     private Room down;
 
-    //Array<Item> loot;
+    //Array<item.Item> loot;
 
     public Room(String name, String description) {
         this.name = name;
