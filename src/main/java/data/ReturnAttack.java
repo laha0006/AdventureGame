@@ -1,3 +1,5 @@
+package data;
+
 public class ReturnAttack {
         private Status status;
         private String outputText;
