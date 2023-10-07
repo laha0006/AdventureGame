@@ -22,7 +22,7 @@ public class Player {
 
     public Player() {
         inventory = new ArrayList<Item>();
-        maxHealthPoints = 60;
+        //maxHealthPoints = 60;
         healthPoints = 50;
     }
 
@@ -135,6 +135,11 @@ public class Player {
 
     public int getMaxHealthPoints() {
         return maxHealthPoints;
+    }
+
+
+    public Weapon getWeaponSlot1() {
+        return weaponSlot1;
     }
 
     public ReturnConsumable consume(String foodName) {

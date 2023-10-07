@@ -4,7 +4,6 @@ import item.Consumable;
 import item.Item;
 import item.MeleeWeapon;
 import item.RangedWeapon;
-import ui.Audio;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -21,6 +20,8 @@ public class Map {
                 new Audio("sounds/vibe.wav"));
         room1.addItem(new Item("Dead adventurer's [backpack]","backpack"));
         room1.addItem(new Consumable("Full [wine] bottle","wine",-1, 2));
+        room1.addItem(new MeleeWeapon("Worn adventurer's [gloves}","gloves",2,1000,0,
+                new Audio("sounds/punch.wav")));
 
         Room room2 = new Room("game.Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.",
                 new Audio("sounds/vibe2.wav"));
