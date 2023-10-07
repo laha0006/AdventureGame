@@ -1,7 +1,6 @@
 package game;
 
 import item.Item;
-import ui.Audio;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
