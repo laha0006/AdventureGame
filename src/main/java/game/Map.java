@@ -4,6 +4,11 @@ import item.Consumable;
 import item.Item;
 import item.MeleeWeapon;
 import item.RangedWeapon;
+import ui.Audio;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 
 public class Map {
     private Room startingRoom;
@@ -11,15 +16,18 @@ public class Map {
     public Map() {
     }
 
-    public void buildWorld() {
-        Room room1 = new Room("game.Room 1", "The start of your adventures begins here. Two doors are visible to the east and south.");
+    public void buildWorld() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        Room room1 = new Room("game.Room 1", "The start of your adventures begins here. Two doors are visible to the east and south.",
+                new Audio("sounds/vibe.wav"));
         room1.addItem(new Item("Dead adventurer's [backpack]","backpack"));
         room1.addItem(new Consumable("Full [wine] bottle","wine",-1, 2));
 
-        Room room2 = new Room("game.Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
+        Room room2 = new Room("game.Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.",
+                new Audio("sounds/vibe2.wav"));
         room2.addItem(new MeleeWeapon("A big strange [bone]", "Bone", 2,5, 0));
 
-        Room room3 = new Room("game.Room 3","Troll market - here you can purchase cheese and hobbit-sandwiches.");
+        Room room3 = new Room("game.Room 3","Troll market - here you can purchase cheese and hobbit-sandwiches.",
+                new Audio("sounds/vibe3.wav"));
         room3.addItem(new Consumable("Freshly made hobbit-[sandwich]", "sandwich", 10));
 
         Room room4 = new Room("game.Room 4","A lush environment, the sound of running water echoes.");
