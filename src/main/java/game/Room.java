@@ -1,7 +1,10 @@
 package game;
 
 import item.Item;
+import ui.Audio;
 
+import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Room {
@@ -65,6 +68,14 @@ public class Room {
             }
         }
         return null;
+    }
+
+    public void playAmbient() throws LineUnavailableException, IOException {
+        ambientSound.play();
+    }
+
+    public void stopAmbient() throws LineUnavailableException, IOException {
+        ambientSound.stop();
     }
 
     //Set metoder
@@ -143,5 +154,9 @@ public class Room {
 
     public ArrayList<Item> getLoot() {
         return loot;
+    }
+
+    public Audio getAmbientSound() {
+        return ambientSound;
     }
 }
