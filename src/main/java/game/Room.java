@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Room {
     private final String name;
     private final String description;
+    private Audio ambientSound;
     private ArrayList<Item> loot;
     private ArrayList<Enemy> enemies;
 
@@ -24,6 +25,14 @@ public class Room {
         this.description = description;
         loot = new ArrayList<Item>();
         enemies = new ArrayList<>();
+        ambientSound = null;
+    }
+
+    public Room(String name, String description, Audio ambientSound) {
+        this.name = name;
+        this.description = description;
+        this.ambientSound = ambientSound;
+        loot = new ArrayList<Item>();
     }
 
     public void addItem(Item item) {
@@ -38,21 +47,6 @@ public class Room {
         for(Item item : loot) {
             if(item.getShortName().equalsIgnoreCase(itemName)) {
                 return item;
-            }
-        }
-        return null;
-    }
-
-    public void addEnemy(Enemy enemy) {
-        enemies.add(enemy);
-    }
-    public void removeEnemy(Enemy enemy) {
-        enemies.remove(enemy);
-    }
-    public Enemy findEnemy(String enemyName) {
-        for (Enemy enemy : enemies) {
-            if (enemy.getName().equalsIgnoreCase(enemyName)){
-                return enemy;
             }
         }
         return null;
