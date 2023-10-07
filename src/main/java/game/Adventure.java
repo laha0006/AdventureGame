@@ -73,12 +73,6 @@ public class Adventure {
         return player.getConsumables();
     }
 
-    public void playAmbient() throws LineUnavailableException, IOException {
-        player.getPlayerPosition().playAmbient();
-    }
-    public void stopAmbient() throws LineUnavailableException, IOException {
-        player.getPlayerPosition().stopAmbient();
-    }
     public Status equip(String itemName) {
         return player.equip(itemName);
     }
