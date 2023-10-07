@@ -31,7 +31,7 @@ public class Adventure {
 
     public boolean movePlayer(Direction direction) throws LineUnavailableException, IOException {
         boolean moved = player.movePlayer(direction);
-        audioController.updateAmbient();
+        if (moved) audioController.updateAmbient();
         return moved;
     }
 
