@@ -5,6 +5,8 @@ import game.Adventure;
 import item.Item;
 
 
+import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +17,7 @@ public class UserInterface {
         this.adventure = adventure;
     }
 
-    public void start() {
+    public void start() throws LineUnavailableException, IOException {
         System.out.println("Welcome to the The Game currently know as game.Adventure Game");
         System.out.println("Write 'help' to show commands");
         System.out.println("You've entered:  " + adventure.getCurrentRoomName());
@@ -24,7 +26,7 @@ public class UserInterface {
             handleInput();
         }
     }
-    public void handleInput() {
+    public void handleInput() throws LineUnavailableException, IOException {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
