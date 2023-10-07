@@ -16,16 +16,16 @@ public class Audio {
         volumeControl.setValue(-40f);
     }
 
-    public void play() throws LineUnavailableException, IOException {
+    public void play() {
         audioClip.loop(Clip.LOOP_CONTINUOUSLY);
         audioClip.start();
     }
 
-    public void stop() throws LineUnavailableException, IOException {
+    public void stop() {
         audioClip.stop();
     }
 
-    public void playOnce() throws LineUnavailableException, IOException {
+    public void playOnce() {
         if (audioClip.isActive()) {
             audioClip.stop();
             audioClip.setMicrosecondPosition(0);
