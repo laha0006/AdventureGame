@@ -27,4 +27,11 @@ public class AudioController {
             currentRoom.playAmbient();
         }
     }
+
+    public void playAttackSound() throws LineUnavailableException, IOException {
+        if(player.getWeaponSlot1() == null) return;
+        if(player.getWeaponSlot1().getAttackSound() != null) {
+            player.getWeaponSlot1().playAttackSound();
+        }
+    }
 }
