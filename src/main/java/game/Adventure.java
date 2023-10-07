@@ -77,9 +77,9 @@ public class Adventure {
         return player.equip(itemName);
     }
 
-    public ReturnAttack attack() {
+    public ReturnAttack attack() throws LineUnavailableException, IOException {
+        audioController.playAttackSound();
         return player.attack();
-
     }
 
 }
