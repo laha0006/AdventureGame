@@ -26,15 +26,9 @@ public class Audio {
     }
 
     public void playOnce() {
-        if (audioClip.isActive()) {
-            audioClip.stop();
-            audioClip.setMicrosecondPosition(0);
-            audioClip.start();
-        } else {
-            audioClip.setMicrosecondPosition(0);
-            audioClip.start();
-        }
-
+        if (audioClip.isActive()) audioClip.stop();
+        audioClip.setMicrosecondPosition(0);
+        audioClip.start();
     }
 
 
