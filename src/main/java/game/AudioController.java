@@ -19,8 +19,12 @@ public class AudioController {
     }
 
     public void updateAmbient() throws LineUnavailableException, IOException {
-        currentRoom.stopAmbient();
+        if (currentRoom.getAmbientSound() != null) {
+            currentRoom.stopAmbient();
+        }
         currentRoom = player.getPlayerPosition();
-        currentRoom.playAmbient();
+        if (currentRoom.getAmbientSound() != null) {
+            currentRoom.playAmbient();
+        }
     }
 }
