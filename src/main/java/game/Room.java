@@ -1,12 +1,16 @@
 package game;
 
 import item.Item;
+import ui.Audio;
 
+import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Room {
     private final String name;
     private final String description;
+    private Audio ambientSound;
     private ArrayList<Item> loot;
     private ArrayList<Enemy> enemies;
 
@@ -24,6 +28,14 @@ public class Room {
         this.description = description;
         loot = new ArrayList<Item>();
         enemies = new ArrayList<>();
+        ambientSound = null;
+    }
+
+    public Room(String name, String description, Audio ambientSound) {
+        this.name = name;
+        this.description = description;
+        this.ambientSound = ambientSound;
+        loot = new ArrayList<Item>();
     }
 
     public void addItem(Item item) {
@@ -56,6 +68,14 @@ public class Room {
             }
         }
         return null;
+    }
+
+    public void playAmbient() throws LineUnavailableException, IOException {
+        ambientSound.play();
+    }
+
+    public void stopAmbient() throws LineUnavailableException, IOException {
+        ambientSound.stop();
     }
 
     //Set metoder
@@ -134,5 +154,9 @@ public class Room {
 
     public ArrayList<Item> getLoot() {
         return loot;
+    }
+
+    public Audio getAmbientSound() {
+        return ambientSound;
     }
 }
