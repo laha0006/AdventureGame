@@ -25,4 +25,17 @@ public class Audio {
         audioClip.stop();
     }
 
+    public void playOnce() throws LineUnavailableException, IOException {
+        if (audioClip.isActive()) {
+            audioClip.stop();
+            audioClip.setMicrosecondPosition(0);
+            audioClip.start();
+        } else {
+            audioClip.setMicrosecondPosition(0);
+            audioClip.start();
+        }
+
+    }
+
+
 }
