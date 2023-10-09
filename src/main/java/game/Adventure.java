@@ -1,14 +1,11 @@
 package game;
 
-import data.Direction;
-import data.ReturnAttack;
-import data.ReturnConsumable;
-import data.Status;
+import messages.Direction;
+import messages.ReturnAttack;
+import messages.ReturnConsumable;
+import messages.Status;
 import item.Item;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Adventure {
