@@ -20,7 +20,7 @@ public class UserInterface {
         this.scanner = new Scanner(System.in);
     }
 
-    public void start() throws LineUnavailableException, IOException {
+    public void start() {
         System.out.println("Welcome to the The Game currently know as game.Adventure Game");
         System.out.println("Write 'help' to show commands");
         System.out.println("You've entered:  " + adventure.getCurrentRoomName());
