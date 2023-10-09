@@ -27,7 +27,9 @@ public abstract class Weapon extends Item {
     public abstract int attack();
 
     public void playAttackSound() {
-        attackSound.playOnce();
+        if(attackSound != null) {
+            attackSound.playOnce();
+        }
     }
 
     public boolean isBroken() {
