@@ -8,6 +8,9 @@ public enum Status {
     NON_EQUIPPABLE,
     BROKEN,
     SUCCESS,
+    NO_ENEMY,
+    ENEMY_DEAD,
+    PLAYER_DEAD,
 
 }
 

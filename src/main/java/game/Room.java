@@ -1,16 +1,10 @@
-package game;
-
-import item.Item;
-
-import javax.sound.sampled.LineUnavailableException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Room {
     private final String name;
     private final String description;
-    private Audio ambientSound;
     private ArrayList<Item> loot;
+    private ArrayList<Enemy> enemies;
 
     private Room north;
     private Room south;
@@ -19,19 +13,11 @@ public class Room {
     private Room up;
     private Room down;
 
-    //Array<item.Item> loot;
+    //Array<Item> loot;
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
-        loot = new ArrayList<Item>();
-        ambientSound = null;
-    }
-
-    public Room(String name, String description, Audio ambientSound) {
-        this.name = name;
-        this.description = description;
-        this.ambientSound = ambientSound;
         loot = new ArrayList<Item>();
     }
 
@@ -52,12 +38,19 @@ public class Room {
         return null;
     }
 
-    public void playAmbient() throws LineUnavailableException, IOException {
-        ambientSound.play();
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
     }
-
-    public void stopAmbient() throws LineUnavailableException, IOException {
-        ambientSound.stop();
+    public void removeEnemy(Enemy enemy) {
+        enemies.remove(enemy);
+    }
+    public Enemy findEnemy(String enemyName) {
+        for (Enemy enemy : enemies) {
+            if (enemy.getName().equalsIgnoreCase(enemyName)){
+                return enemy;
+            }
+        }
+        return null;
     }
 
     //Set metoder
@@ -136,9 +129,5 @@ public class Room {
 
     public ArrayList<Item> getLoot() {
         return loot;
-    }
-
-    public Audio getAmbientSound() {
-        return ambientSound;
     }
 }

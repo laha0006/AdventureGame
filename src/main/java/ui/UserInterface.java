@@ -170,24 +170,41 @@ public class UserInterface {
                     }
                     break;
                 case "attack":
-                    ReturnAttack attack = adventure.attack();
+                    ReturnAttack attack = adventure.attack(splitInput[1]);
 
                     switch(attack.getStatus()) {
                         case MISSING:
                             System.out.println("You flail your fists in the air awkwardly dealing no damage. ");
                             break;
+                        case NO_ENEMY:
+                            System.out.println("You swing your " + attack.getOutputText() + " and hit nothing but air.");
+                            break;
                         case BROKEN:
                             System.out.println(attack.getOutputText() + " is broken.");
                             break;
                         case SUCCESS:
-                            System.out.println("You attacked with " + attack.getOutputText() + " and dealt " + attack.getDamage() + " damage to the air. Good job!");
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
+                            System.out.println(attack.getEnemyName() + " has " + attack.getEnemyHealthPoints() + "HP left.");
+                            System.out.println(attack.getEnemyName() + " hit you for " + attack.getEnemyDamage() + " damage, and you have " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
                             if(attack.getLostEffect() != 0) {
                                 System.out.println("You feel normal.");
                             }
                             if (attack.isBroken())
-                                System.out.println("Your " + attack.getOutputText() + " broke");
-
+                                System.out.println("Your " + attack.getOutputText() + " broke.");
                             break;
+                        case ENEMY_DEAD:
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
+                            System.out.println(attack.getEnemyName() + " falls over and dies.");
+                            if(attack.getLostEffect() != 0) {
+                                System.out.println("You feel normal.");
+                            }
+                            if (attack.isBroken())
+                                System.out.println("Your " + attack.getOutputText() + " broke.");
+                            break;
+                        case PLAYER_DEAD:
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
+                            System.out.println(attack.getEnemyName() + " hit you for " + attack.getEnemyDamage() + " damage, and you die.");
+                            System.exit(0);
                     }
                     break;
             }
