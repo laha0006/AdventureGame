@@ -26,7 +26,7 @@ public abstract class Weapon extends Item {
 
     public abstract int attack();
 
-    public void playAttackSound() throws LineUnavailableException, IOException {
+    public void playAttackSound() {
         attackSound.playOnce();
     }
 
