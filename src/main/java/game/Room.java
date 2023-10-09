@@ -52,6 +52,14 @@ public class Room {
         return null;
     }
 
+    public void playAmbient() throws LineUnavailableException, IOException {
+        ambientSound.play();
+    }
+
+    public void stopAmbient() throws LineUnavailableException, IOException {
+        ambientSound.stop();
+    }
+
     //Set metoder
     public void setNorth(Room north) {
         this.north = north;
@@ -128,5 +136,9 @@ public class Room {
 
     public ArrayList<Item> getLoot() {
         return loot;
+    }
+
+    public Audio getAmbientSound() {
+        return ambientSound;
     }
 }
