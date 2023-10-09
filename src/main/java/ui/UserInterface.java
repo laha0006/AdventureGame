@@ -5,8 +5,6 @@ import game.Adventure;
 import item.Item;
 
 
-import javax.sound.sampled.LineUnavailableException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
