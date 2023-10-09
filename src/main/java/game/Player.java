@@ -8,12 +8,15 @@ import item.Consumable;
 import item.Item;
 import item.Weapon;
 
+import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player {
     private Room currentPosition;
+    private Room previousPosition;
     private ArrayList<Item> inventory;
-    private int maxHealthPoints = 60;
+    private int maxHealthPoints;
     private int healthPoints;
     private int attackPower;
     private Weapon weaponSlot1;
@@ -22,7 +25,7 @@ public class Player {
 
     public Player() {
         inventory = new ArrayList<Item>();
-        //maxHealthPoints = 60;
+        maxHealthPoints = 60;
         healthPoints = 50;
     }
 
@@ -30,50 +33,45 @@ public class Player {
         switch (direction) {
             case NORTH:
                 Room northRoom = currentPosition.getNorth();
-                if (northRoom != null) {
-                    currentPosition = northRoom;
-                    return true;
-                } else return false;
+                return moveToRoom(northRoom);
 
             case SOUTH:
                 Room southRoom = currentPosition.getSouth();
-                if (southRoom != null) {
-                    currentPosition = southRoom;
-                    return true;
-                } else return false;
+                return moveToRoom(southRoom);
 
             case EAST:
                 Room eastRoom = currentPosition.getEast();
-                if (eastRoom != null) {
-                    currentPosition = eastRoom;
-                    return true;
-                } else return false;
+                return moveToRoom(eastRoom);
 
             case WEST:
                 Room westRoom = currentPosition.getWest();
-                if (westRoom != null) {
-                    currentPosition = westRoom;
-                    return true;
-                } else return false;
+                return moveToRoom(westRoom);
 
             case UP:
                 Room upRoom = currentPosition.getUp();
-                if (upRoom != null) {
-                    currentPosition = upRoom;
-                    return  true;
-                }else return false;
+                return moveToRoom(upRoom);
 
             case DOWN:
                 Room downRoom = currentPosition.getDown();
-                if (downRoom != null) {
-                    currentPosition = downRoom;
-                    return true;
-                } else return false;
+                return moveToRoom(downRoom);
         }
         return false;
     }
 
+    private boolean moveToRoom(Room room) {
+        if (room != null) {
+            setCurrentPosition(room);
+            updateAmbientSound();
+            return true;
+        } else return false;
+    }
+
     public void setCurrentPosition(Room room) {
+        if(currentPosition != null) {
+            previousPosition = currentPosition;
+        } else {
+            previousPosition = room;
+        }
         currentPosition = room;
     }
 
@@ -147,8 +145,8 @@ public class Player {
         Item foodToEat = searchInv(foodName);
         if (foodToEat instanceof Consumable) {
             inventory.remove(foodToEat);
-            healthPoints += ((Consumable) foodToEat).getHealthGain();
-            healthPoints = Math.min(healthPoints,maxHealthPoints);
+            int tempHealthPoints = healthPoints + ((Consumable) foodToEat).getHealthGain();
+            healthPoints = Math.min(tempHealthPoints,maxHealthPoints);
             if (((Consumable) foodToEat).getAttackPower() != 0) {
                 attackPower += (((Consumable) foodToEat).getAttackPower());
                 result.setEffect(((Consumable) foodToEat).getAttackPower());
@@ -215,7 +213,8 @@ public class Player {
         result.setLostEffect(attackPower);
         attackPower = 0;
 
-        currentEnemy.loseHealth(attackDamage);
+        currentEnemy.loseHealth(attackDamage); // player deals damage to enemy
+        weaponSlot1.playAttackSound();
         result.setEnemyHealthPoints(currentEnemy.getEnemyHealthPoints());
         if(!currentEnemy.isAlive()) {
             currentPosition.addItem(currentEnemy.getWeapon());
@@ -223,13 +222,32 @@ public class Player {
             result.setStatus(Status.ENEMY_DEAD);
             return result;
         }
-        healthPoints -= enemyDamage;
+        healthPoints -= enemyDamage; // enemy deals damage to player
         if (healthPoints < 1) {
             result.setStatus(Status.PLAYER_DEAD);
             return result;
         }
         result.setStatus(Status.SUCCESS);
         return result;
+    }
+
+
+    private void updateAmbientSound() {
+        if (previousPosition.getAmbientSound() != null) {
+            try {
+                previousPosition.stopAmbient();
+            } catch (LineUnavailableException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (currentPosition.getAmbientSound() != null) {
+            try {
+                currentPosition.playAmbient();
+            } catch (LineUnavailableException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }
