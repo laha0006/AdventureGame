@@ -1,4 +1,4 @@
-package data;
+package messages;
 
 public class ReturnAttack {
         private Status status;
