@@ -1,6 +1,6 @@
 package ui;
 
-import data.*;
+import messages.*;
 import game.Adventure;
 import item.Item;
 
