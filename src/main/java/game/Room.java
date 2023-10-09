@@ -18,7 +18,7 @@ public class Room {
     private Room up;
     private Room down;
 
-    //Array<item.Item> loot;
+    //Array<Item> loot;
 
     public Room(String name, String description) {
         this.name = name;
@@ -52,12 +52,19 @@ public class Room {
         return null;
     }
 
-    public void playAmbient() throws LineUnavailableException, IOException {
-        ambientSound.play();
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
     }
-
-    public void stopAmbient() throws LineUnavailableException, IOException {
-        ambientSound.stop();
+    public void removeEnemy(Enemy enemy) {
+        enemies.remove(enemy);
+    }
+    public Enemy findEnemy(String enemyName) {
+        for (Enemy enemy : enemies) {
+            if (enemy.getName().equalsIgnoreCase(enemyName)){
+                return enemy;
+            }
+        }
+        return null;
     }
 
     //Set metoder
@@ -136,9 +143,5 @@ public class Room {
 
     public ArrayList<Item> getLoot() {
         return loot;
-    }
-
-    public Audio getAmbientSound() {
-        return ambientSound;
     }
 }
