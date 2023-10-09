@@ -1,3 +1,10 @@
+package game;
+
+import item.Weapon;
+
+import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
+
 public class Enemy {
     private String name;
     private int enemyHealthPoints;
@@ -30,6 +37,10 @@ public class Enemy {
 
     public int getEnemyHealthPoints() {
         return enemyHealthPoints;
+    }
+
+    public void playAttackSound() {
+        weapon.playAttackSound();
     }
 
     public void setEnemyHealthPoints(int enemyHealthPoints) {
