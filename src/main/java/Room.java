@@ -19,6 +19,7 @@ public class Room {
         this.name = name;
         this.description = description;
         loot = new ArrayList<Item>();
+        enemies = new ArrayList<>();
     }
 
     public void addItem(Item item) {

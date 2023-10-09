@@ -172,7 +172,7 @@ public class Player {
 
     }
 
-    public ReturnAttack attack() {
+    public ReturnAttack attack(String enemyName) {
         ReturnAttack result = new ReturnAttack();
         Enemy currentEnemy = currentPosition.findEnemy(enemyName);
         if(weaponSlot1 == null) {
