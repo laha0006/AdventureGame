@@ -1,38 +1,26 @@
-package game;
-
-import data.Direction;
-import data.ReturnAttack;
-import data.ReturnConsumable;
-import data.Status;
-import item.Item;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Adventure {
     private final Map map;
     private final Player player;
-    private final AudioController audioController;
 
-    public Adventure() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    public Adventure() {
         map = new Map();
-        map.buildWorld();
-
         player = new Player();
-        player.setCurrentPosition(map.getStartingRoom());
-
-        audioController = new AudioController(player);
+        start();
     }
 //Review below
+    public void start() {
+        map.buildWorld();
+        player.setCurrentPosition(map.getStartingRoom());
+    }
 
+    public Room getStartingRoom() {
+        return map.getStartingRoom();
+    }
 
-
-    public boolean movePlayer(Direction direction) throws LineUnavailableException, IOException {
-        boolean moved = player.movePlayer(direction);
-        if (moved) audioController.updateAmbient();
-        return moved;
+    public boolean movePlayer(Direction direction) {
+        return player.movePlayer(direction);
     }
 
     public String getCurrentRoomDescription() {
@@ -77,9 +65,9 @@ public class Adventure {
         return player.equip(itemName);
     }
 
-    public ReturnAttack attack() throws LineUnavailableException, IOException {
-        audioController.playAttackSound();
-        return player.attack();
+    public ReturnAttack attack(String enemyName) {
+        return player.attack(enemyName);
+
     }
 
 }
