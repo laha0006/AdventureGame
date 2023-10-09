@@ -15,7 +15,7 @@ public class Adventure {
     private final Map map;
     private final Player player;
 
-    public Adventure() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    public Adventure() {
         map = new Map();
         map.buildWorld();
         map.startSound();
