@@ -6,26 +6,26 @@ import data.ReturnConsumable;
 import data.Status;
 import item.Item;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Adventure {
     private final Map map;
     private final Player player;
 
-    public Adventure() {
+    public Adventure() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         map = new Map();
-        player = new Player();
-        start();
-    }
-//Review below
-    public void start() {
         map.buildWorld();
+        map.startSound();
+
+        player = new Player();
         player.setCurrentPosition(map.getStartingRoom());
     }
+//Review below
 
-    public Room getStartingRoom() {
-        return map.getStartingRoom();
-    }
+
 
     public boolean movePlayer(Direction direction) {
         return player.movePlayer(direction);
@@ -75,7 +75,6 @@ public class Adventure {
 
     public ReturnAttack attack(String enemyName) {
         return player.attack(enemyName);
-
     }
 
 }
