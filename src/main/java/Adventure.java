@@ -65,8 +65,8 @@ public class Adventure {
         return player.equip(itemName);
     }
 
-    public ReturnAttack attack() {
-        return player.attack();
+    public ReturnAttack attack(String enemyName) {
+        return player.attack(enemyName);
 
     }
 
