@@ -79,4 +79,12 @@ public class Map {
     public Room getStartingRoom() {
         return startingRoom;
     }
+
+    public void startSound() {
+        try {
+            startingRoom.playAmbient();
+        } catch (LineUnavailableException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
