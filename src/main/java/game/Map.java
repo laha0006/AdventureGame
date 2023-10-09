@@ -15,20 +15,28 @@ public class Map {
         Room room1 = new Room("game.Room 1", "The start of your adventures begins here. Two doors are visible to the east and south.");
         room1.addItem(new Item("Dead adventurer's [backpack]", "backpack"));
         room1.addItem(new Consumable("Full [wine] bottle", "wine", -1, 2));
+        //test
+        room1.addItem(new MeleeWeapon("Ancient [Gloves] of Testing","gloves",10,10,10,
+                new Audio("punch.wav")));
         room1.setAmbientSound(new Audio("vibe.wav"));
 
         Room room2 = new Room("game.Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
         room2.addItem(new MeleeWeapon("A big strange [bone]", "Bone", 2, 5, 0));
+        //test
         room2.setAmbientSound(new Audio("vibe2.wav"));
 
         Room room3 = new Room("game.Room 3", "Troll market - here you can purchase cheese and hobbit-sandwiches.");
         room3.addItem(new Consumable("Freshly made hobbit-[sandwich]", "sandwich", 10));
+        //test
         room3.setAmbientSound(new Audio("vibe3.wav"));
+
 
         Room room4 = new Room("game.Room 4", "A lush environment, the sound of running water echoes.");
         room4.addItem((new MeleeWeapon("Short[sword]", "Sword", 5, 10, 3)));
         room4.addItem(new Consumable("Clean [water]", "water", 5));
         room4.addItem(new MeleeWeapon("Old man's fishing [rod]", "rod", 4, 1, 1));
+        //test enemy
+        room4.addEnemy(new Enemy("Lars",20,new MeleeWeapon("White Support [Cane]","cane",10,10,10)));
 
         Room treasureRoom = new Room("Treasure game.Room", "Piles of gemstones, gold, and relics are stacked as far as the eye can see");
         treasureRoom.addItem(new Item("The [Treasure] of game.Adventure Game", "Treasure"));
