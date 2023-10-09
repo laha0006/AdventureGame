@@ -5,17 +5,22 @@ import game.Adventure;
 import item.Item;
 
 
+import javax.sound.sampled.LineUnavailableException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
     private final Adventure adventure;
+    Scanner scanner;
+
 
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
+        this.scanner = new Scanner(System.in);
     }
 
-    public void start() {
+    public void start() throws LineUnavailableException, IOException {
         System.out.println("Welcome to the The Game currently know as game.Adventure Game");
         System.out.println("Write 'help' to show commands");
         System.out.println("You've entered:  " + adventure.getCurrentRoomName());
@@ -25,7 +30,6 @@ public class UserInterface {
         }
     }
     public void handleInput() {
-        Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
         String[] splitInput = input.trim().toLowerCase().split(" ");
@@ -33,63 +37,26 @@ public class UserInterface {
         if (splitInput.length == 1) {
             switch (splitInput[0]) {
                 case "n", "north":
-                    if (adventure.movePlayer(Direction.NORTH)) {
-                        System.out.println("You went north to " + adventure.getCurrentRoomName());
-                        System.out.println(adventure.getCurrentRoomDescription());
-                        break;
-                    } else {
-                        System.out.println("You can't go that way.");
-                        break;
-                    }
-
+                    move(Direction.NORTH);
+                    break;
                 case "s", "south":
-                    if (adventure.movePlayer(Direction.SOUTH)) {
-                        System.out.println("You went south to " + adventure.getCurrentRoomName());
-                        System.out.println(adventure.getCurrentRoomDescription());
-                        break;
-                    } else {
-                        System.out.println("You can't go that way.");
-                        System.out.println(adventure.getCurrentRoomDescription());
-                        break;
-                    }
+                    move(Direction.SOUTH);
+                    break;
                 case "e", "east":
-                    if (adventure.movePlayer(Direction.EAST)) {
-                        System.out.println("You went east to " + adventure.getCurrentRoomName());
-                        System.out.println(adventure.getCurrentRoomDescription());
-                        break;
-                    } else {
-                        System.out.println("You can't go that way.");
-                        break;
-                    }
+                    move(Direction.EAST);
+                    break;
+
                 case "w", "west":
-                    if (adventure.movePlayer(Direction.WEST)) {
-                        System.out.println("You went west to " + adventure.getCurrentRoomName());
-                        System.out.println(adventure.getCurrentRoomDescription());
-                        break;
-                    } else {
-                        System.out.println("You can't go that way.");
-                        break;
-                    }
+                    move(Direction.WEST);
+                    break;
 
                 case "up":
-                    if (adventure.movePlayer(Direction.UP)) {
-                        System.out.println("You went up to " + adventure.getCurrentRoomName());
-                        System.out.println(adventure.getCurrentRoomDescription());
-                        break;
-                    } else {
-                        System.out.println("You can't go that way.");
-                        break;
-                    }
+                    move(Direction.UP);
+                    break;
 
                 case "down":
-                    if (adventure.movePlayer(Direction.DOWN)) {
-                        System.out.println("You went down to " + adventure.getCurrentRoomName());
-                        System.out.println(adventure.getCurrentRoomDescription());
-                        break;
-                    } else {
-                        System.out.println("You can't go that way.");
-                        break;
-                    }
+                    move(Direction.DOWN);
+                    break;
 
                 case "look":
                     showLoot(adventure.getCurrentRoomLoot());
@@ -206,6 +173,15 @@ public class UserInterface {
                     }
                     break;
             }
+        }
+    }
+
+    private void move(Direction direction) {
+        if (adventure.movePlayer(direction)) {
+            System.out.println("You went north to " + adventure.getCurrentRoomName());
+            System.out.println(adventure.getCurrentRoomDescription());
+        } else {
+            System.out.println("You can't go that way.");
         }
     }
 
