@@ -1,15 +1,13 @@
 package game;
 
-import data.Direction;
-import data.ReturnAttack;
-import data.ReturnConsumable;
-import data.Status;
+import messages.Direction;
+import messages.ReturnAttack;
+import messages.ReturnConsumable;
+import messages.Status;
 import item.Consumable;
 import item.Item;
 import item.Weapon;
 
-import javax.sound.sampled.LineUnavailableException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player {
