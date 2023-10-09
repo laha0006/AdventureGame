@@ -10,18 +10,44 @@ import java.io.InputStream;
 
 public class Audio {
     Clip audioClip;
-    public Audio(String audioFilePath) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public Audio(String audioFilePath) {
 
         InputStream inputStream = getClass().getResourceAsStream("/sounds/"+audioFilePath);
         if (inputStream != null) { // if inputStream is not null, means jar file, and hence used getResource as stream.
             InputStream bufferedInputStream = new BufferedInputStream(inputStream);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedInputStream);
-            audioClip = AudioSystem.getClip();
-            audioClip.open(audioStream);
+            AudioInputStream audioStream = null;
+            try {
+                audioStream = AudioSystem.getAudioInputStream(bufferedInputStream);
+            } catch (UnsupportedAudioFileException | IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                audioClip = AudioSystem.getClip();
+            } catch (LineUnavailableException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                audioClip.open(audioStream);
+            } catch (LineUnavailableException | IOException e) {
+                throw new RuntimeException(e);
+            }
         } else { // if inputStream is null, means we're not in a jar, and need absolute file path.
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File("sounds/"+audioFilePath).getAbsoluteFile());
-            audioClip = AudioSystem.getClip();
-            audioClip.open(audioStream);
+            AudioInputStream audioStream = null;
+            try {
+                audioStream = AudioSystem.getAudioInputStream(new File("sounds/"+audioFilePath).getAbsoluteFile());
+            } catch (UnsupportedAudioFileException | IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                audioClip = AudioSystem.getClip();
+            } catch (LineUnavailableException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                audioClip.open(audioStream);
+            } catch (LineUnavailableException | IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 
