@@ -67,7 +67,7 @@ public class Player {
     }
 
     public void setCurrentPosition(Room room) {
-        if(currentPosition != null) {
+        if (currentPosition != null) {
             previousPosition = currentPosition;
         } else {
             previousPosition = room;
@@ -94,7 +94,7 @@ public class Player {
         if (itemToDrop != null) {
             inventory.remove(itemToDrop);
             currentPosition.addItem(itemToDrop);
-            if(weaponSlot1 != null && itemToDrop.getLongName().equals(weaponSlot1.getLongName())) {
+            if (weaponSlot1 != null && itemToDrop.getLongName().equals(weaponSlot1.getLongName())) {
                 weaponSlot1 = null;
             }
             return itemToDrop;
@@ -146,7 +146,7 @@ public class Player {
         if (foodToEat instanceof Consumable) {
             inventory.remove(foodToEat);
             int tempHealthPoints = healthPoints + ((Consumable) foodToEat).getHealthGain();
-            healthPoints = Math.min(tempHealthPoints,maxHealthPoints);
+            healthPoints = Math.min(tempHealthPoints, maxHealthPoints);
             if (((Consumable) foodToEat).getAttackPower() != 0) {
                 attackPower += (((Consumable) foodToEat).getAttackPower());
                 result.setEffect(((Consumable) foodToEat).getAttackPower());
@@ -156,7 +156,7 @@ public class Player {
             result.setItem(foodToEat);
             return result;
         }
-        if(foodToEat == null) {
+        if (foodToEat == null) {
             result.setStatus(Status.MISSING);
             result.setOutputText(foodName);
             result.setItem(null);
@@ -167,19 +167,20 @@ public class Player {
         result.setItem(foodToEat);
         return result;
     }
+
     public ArrayList<Item> getConsumables() {
         ArrayList<Item> foodItems = new ArrayList<>();
         for (Item item : inventory) {
-            if(item instanceof Consumable) foodItems.add(item);
+            if (item instanceof Consumable) foodItems.add(item);
         }
         return foodItems;
     }
 
     public Status equip(String itemName) {
         Item itemToEquip = searchInv(itemName);
-        if(itemToEquip == null) return Status.MISSING;
-        if(!(itemToEquip instanceof Weapon)) return  Status.NON_EQUIPPABLE;
-        if( ((Weapon) itemToEquip).isBroken()) return Status.BROKEN;
+        if (itemToEquip == null) return Status.MISSING;
+        if (!(itemToEquip instanceof Weapon)) return Status.NON_EQUIPPABLE;
+        if (((Weapon) itemToEquip).isBroken()) return Status.BROKEN;
         weaponSlot1 = (Weapon) itemToEquip;
         return Status.EQUIPPABLE;
 
@@ -188,21 +189,21 @@ public class Player {
     public ReturnAttack attack(String enemyName) {
         ReturnAttack result = new ReturnAttack();
         Enemy currentEnemy = currentPosition.findEnemy(enemyName);
-        if(weaponSlot1 == null) {
+        if (weaponSlot1 == null) {
             result.setStatus(Status.MISSING);
             return result;
         }
-        if(weaponSlot1.isBroken()){
+        if (weaponSlot1.isBroken()) {
             result.setOutputText(weaponSlot1.getLongName());
             result.setStatus(Status.BROKEN);
             return result;
         }
-        if(currentEnemy == null) {
+        if (currentEnemy == null) {
             result.setStatus(Status.NO_ENEMY);
             result.setOutputText(weaponSlot1.getLongName());
             return result;
         }
-        int attackDamage = weaponSlot1.attack()+attackPower;
+        int attackDamage = weaponSlot1.attack() + attackPower;
         int enemyDamage = currentEnemy.getWeaponAttack();
 
         result.setPlayerDamage(attackDamage);
@@ -216,7 +217,7 @@ public class Player {
         currentEnemy.loseHealth(attackDamage); // player deals damage to enemy
         weaponSlot1.playAttackSound();
         result.setEnemyHealthPoints(currentEnemy.getEnemyHealthPoints());
-        if(!currentEnemy.isAlive()) {
+        if (!currentEnemy.isAlive()) {
             currentPosition.addItem(currentEnemy.getWeapon());
             currentPosition.removeEnemy(currentEnemy);
             result.setStatus(Status.ENEMY_DEAD);
@@ -234,19 +235,10 @@ public class Player {
 
     private void updateAmbientSound() {
         if (previousPosition.getAmbientSound() != null) {
-            try {
-                previousPosition.stopAmbient();
-            } catch (LineUnavailableException | IOException e) {
-                throw new RuntimeException(e);
-            }
+            previousPosition.stopAmbient();
         }
-
         if (currentPosition.getAmbientSound() != null) {
-            try {
-                currentPosition.playAmbient();
-            } catch (LineUnavailableException | IOException e) {
-                throw new RuntimeException(e);
-            }
+            currentPosition.playAmbient();
         }
     }
 
