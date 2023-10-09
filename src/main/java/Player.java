@@ -174,6 +174,7 @@ public class Player {
 
     public ReturnAttack attack() {
         ReturnAttack result = new ReturnAttack();
+        Enemy currentEnemy = currentPosition.findEnemy(enemyName);
         if(weaponSlot1 == null) {
             result.setStatus(Status.MISSING);
             return result;
@@ -183,12 +184,36 @@ public class Player {
             result.setStatus(Status.BROKEN);
             return result;
         }
-        result.setDamage(weaponSlot1.attack()+attackPower);
+        if(currentEnemy == null) {
+            result.setStatus(Status.NO_ENEMY);
+            result.setOutputText(weaponSlot1.getLongName());
+            return result;
+        }
+        int attackDamage = weaponSlot1.attack()+attackPower;
+        int enemyDamage = currentEnemy.getWeaponAttack();
+
+        result.setPlayerDamage(attackDamage);
         result.setOutputText(weaponSlot1.getShortName());
-        result.setStatus(Status.SUCCESS);
+        result.setEnemyDamage(enemyDamage);
+        result.setEnemyName(currentEnemy.getName());
         result.setBroken(weaponSlot1.isBroken());
         result.setLostEffect(attackPower);
         attackPower = 0;
+
+        currentEnemy.loseHealth(attackDamage);
+        result.setEnemyHealthPoints(currentEnemy.getEnemyHealthPoints());
+        if(!currentEnemy.isAlive()) {
+            currentPosition.addItem(currentEnemy.getWeapon());
+            currentPosition.removeEnemy(currentEnemy);
+            result.setStatus(Status.ENEMY_DEAD);
+            return result;
+        }
+        healthPoints -= enemyDamage;
+        if (healthPoints < 1) {
+            result.setStatus(Status.PLAYER_DEAD);
+            return result;
+        }
+        result.setStatus(Status.SUCCESS);
         return result;
     }
 
