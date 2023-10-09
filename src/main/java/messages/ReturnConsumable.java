@@ -1,4 +1,4 @@
-package data;
+package messages;
 
 import item.Consumable;
 import item.Item;
