@@ -234,6 +234,9 @@ public class Player {
         result.setEnemyHealthPoints(currentEnemy.getEnemyHealthPoints());
         if (!currentEnemy.isAlive()) {
             currentPosition.addItem(currentEnemy.getWeapon());
+            if(currentEnemy.getConsumable()!=null) {
+                currentPosition.addItem(currentEnemy.getConsumable());
+            }
             currentPosition.removeEnemy(currentEnemy);
             result.setStatus(Status.ENEMY_DEAD);
             return result;
