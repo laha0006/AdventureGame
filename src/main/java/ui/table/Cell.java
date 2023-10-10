@@ -1,5 +1,7 @@
 package ui.table;
 
+import ui.Color;
+
 public class Cell {
     private int intValue;
     private String stringValue;
@@ -24,6 +26,18 @@ public class Cell {
         STRING = true;
         DOUBLE = false;
         size = stringValue.length();
+    }
+
+    public Cell(String stringValue,boolean color) {
+        this.stringValue = stringValue;
+        INT = false;
+        STRING = true;
+        DOUBLE = false;
+        if(color) {
+            size = stringValue.length() - Color.boldRed("").length();
+        } else {
+            size = stringValue.length();
+        }
     }
 
     public Cell(boolean bool) {

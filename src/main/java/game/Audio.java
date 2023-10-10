@@ -55,7 +55,7 @@ public class Audio {
 
 
         FloatControl volumeControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
-        volumeControl.setValue(-40f);
+        volumeControl.setValue(-20f);
     }
 
     public void play() {
@@ -73,7 +73,6 @@ public class Audio {
         }
         audioClip.setMicrosecondPosition(1);
         audioClip.start();
-        System.out.println("Play sound");
     }
 
 

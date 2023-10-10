@@ -62,7 +62,7 @@ public class Room {
     }
     public Enemy findEnemy(String enemyName) {
         for (Enemy enemy : enemies) {
-            if (enemy.getName().equalsIgnoreCase(enemyName)){
+            if (enemy.getShortName().equalsIgnoreCase(enemyName)){
                 return enemy;
             }
         }
@@ -157,6 +157,10 @@ public class Room {
 
     public ArrayList<Item> getLoot() {
         return loot;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
     }
 
     public Audio getAmbientSound() {

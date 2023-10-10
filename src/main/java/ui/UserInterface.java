@@ -1,8 +1,12 @@
 package ui;
 
+import game.Enemy;
+import item.Consumable;
 import messages.*;
 import game.Adventure;
 import item.Item;
+import ui.table.Row;
+import ui.table.Table;
 
 
 import java.util.ArrayList;
@@ -37,9 +41,11 @@ public class UserInterface {
                 case "n", "north":
                     move(Direction.NORTH);
                     break;
+
                 case "s", "south":
                     move(Direction.SOUTH);
                     break;
+
                 case "e", "east":
                     move(Direction.EAST);
                     break;
@@ -57,19 +63,18 @@ public class UserInterface {
                     break;
 
                 case "look":
-                    showLoot(adventure.getCurrentRoomLoot());
+                    look();
                     System.out.println("\n" + adventure.getCurrentRoomDescription());
                     break;
 
                 case "help":
                     help();
                     break;
+
                 case "inv", "inventory":
-                    showInventory(adventure.getPlayerInventory());
+                    inventory();
                     break;
-                case "consumables":
-                    showInventory(adventure.getPlayerConsumables());
-                    break;
+
                 case "hp":
                     System.out.println("You currently have " + adventure.getPlayerHealthPoints() +"HP");
                     break;
@@ -174,9 +179,69 @@ public class UserInterface {
         }
     }
 
+    private void look() {
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add("Item(s)");
+        columns.add("Foe(s)");
+        Table table = new Table(adventure.getCurrentRoomName(),columns,true );
+        ArrayList<Item> loot = adventure.getCurrentRoomLoot();
+        ArrayList<Enemy> foes = adventure.getCurrentRoomEnemies();
+        int lootSize = loot.size();
+        int foeSize = foes.size();
+        int count = Math.max(lootSize,foeSize);
+        for (int i = 0; i < count; i++) {
+            String item = "";
+            String foe = "";
+            if ( i < lootSize) {
+                item = loot.get(i).getLongName();
+            }
+            if ( i < foeSize) {
+                foe = foes.get(i).getLongName();
+            }
+            table.addRow(new Row().addCell(item).addCell(foe));
+
+        }
+        System.out.println(table.getTableString());
+
+    }
+    private void inventory() {
+        ArrayList<String> columns = new ArrayList<>();
+        columns.add("Weapons");
+        columns.add("Consumables");
+        columns.add("Items");
+        Table table = new Table("Inventory",columns,true );
+        ArrayList<Item> weapons = adventure.getPlayerWeapons();
+        ArrayList<Item> consumables = adventure.getPlayerConsumables();
+        ArrayList<Item> items = adventure.getPlayerItems();
+        int weaponsSize = weapons.size();
+        int consumablesSize = consumables.size();
+        int itemsSize = items.size();
+        int count = Math.max(weaponsSize,
+                Math.max(consumablesSize,itemsSize));
+        for (int i = 0; i < count; i++) {
+            String weapon = "";
+            String consumable = "";
+            String item = "";
+            if ( i < weaponsSize) {
+                weapon = weapons.get(i).getLongName();
+            }
+            if ( i < consumablesSize) {
+                consumable = consumables.get(i).getLongName();
+            }
+            if (i < itemsSize) {
+                item = items.get(i).getLongName();
+            }
+            table.addRow(new Row().addCell(weapon).addCell(consumable).addCell(item));
+
+        }
+        System.out.println(table.getTableString());
+
+    }
+
     private void move(Direction direction) {
         if (adventure.movePlayer(direction)) {
-            System.out.println("You went north to " + adventure.getCurrentRoomName());
+            String cardinalDirection = direction.toString().toLowerCase();
+            System.out.println("You went " + cardinalDirection + " to " + adventure.getCurrentRoomName());
             System.out.println(adventure.getCurrentRoomDescription());
         } else {
             System.out.println("You can't go that way.");
