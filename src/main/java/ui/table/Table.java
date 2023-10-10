@@ -1,5 +1,7 @@
 package ui.table;
 
+import ui.Color;
+
 import java.util.ArrayList;
 
 public class Table {
@@ -78,6 +80,7 @@ public class Table {
                 count++;
             }
         }
+
     }
 
     public boolean addRow(Row row) {
@@ -191,7 +194,8 @@ public class Table {
                     type = "s";
                     prefix = "%-";
                 }
-                template.append(prefix).append(columnSizes.get(cellCount)).append(type);
+
+                template.append(cell.getColor()+ prefix).append(columnSizes.get(cellCount)).append(type+Color.RESET);
                 if (cellCount != size - 1) {
                     template.append(" ");
                 } else {
@@ -203,6 +207,7 @@ public class Table {
                     rowsString.append(String.format(template.toString(), cell.getDoubleValue()));
                 } else if (cell.isSTRING()) {
                     rowsString.append(String.format(template.toString(), cell.getStringValue()));
+
                 } else {
                     //TODO Make more general. overload ui.table.Cell constructor
                     //to facilitate a new ui.table.Cell(true,"TrueString","FalseString");
