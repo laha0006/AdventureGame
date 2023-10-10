@@ -12,9 +12,10 @@ public class Map {
     }
 
     public void buildWorld() {
-        Room room1 = new Room("game.Room 1", "The start of your adventures begins here. Two doors are visible to the east and south.");
+        Room room1 = new Room("Spawn", "The start of your adventures begins here. Two doors are visible to the east and south.");
         room1.addItem(new Item("Dead adventurer's [backpack]", "backpack"));
         room1.addItem(new Consumable("Full [wine] bottle", "wine", -1, 2));
+        room1.addEnemy(new Enemy("[Lars]","[Lars]", 30, new MeleeWeapon("[mace]", "mace", 5,5,5)));
         //test
         room1.addItem(new MeleeWeapon("Ancient [Gloves] of Testing","gloves",10,10,10,
                 new Audio("punch.wav")));
@@ -35,6 +36,7 @@ public class Map {
         room4.addItem((new MeleeWeapon("Short[sword]", "Sword", 5, 10, 3)));
         room4.addItem(new Consumable("Clean [water]", "water", 5));
         room4.addItem(new MeleeWeapon("Old man's fishing [rod]", "rod", 4, 1, 1));
+        room4.addEnemy(new Enemy("[Gorlock] the Destroyer", "[Gorlock]", 35, new MeleeWeapon("Big rusty [axe]", "axe", 5, 5, 8)));
         //test enemy
         room4.addEnemy(new Enemy("Lars",20,new MeleeWeapon("White Support [Cane]","cane",10,10,10)));
 
@@ -44,11 +46,12 @@ public class Map {
         Room room6 = new Room("game.Room 6", "Old tracks for minecarts rusted on the ground, the stench of metal and rust lingers.");
         room6.addItem(new Item("A rusty and dusty [key]", "Key"));
         room6.addItem(new Consumable("Bag of [Doritos]", "Doritos", 2));
-        room6.addItem(new RangedWeapon("A big heavy [crossbow]", "Crossbow", 5, 10));
+        room6.addItem(new RangedWeapon("A big heavy [crossbow]", "crossbow", 5, 10));
+        room6.addEnemy(new Enemy("Lord [Lars]", "Lars",20,new MeleeWeapon("White Support [Cane]","cane",10,10,10)));
 
-        Room room7 = new Room("game.Room 7", "In the middle of the room a water fountain is placed. Next to it is a bucket and some rope.");
-        room7.addItem(new Item("[Bucket]", "Bucket"));
-        room7.addItem(new Item("[Rope]", "Rope"));
+        Room room7 = new Room("Fountain Room", "In the middle of the room an old water fountain is placed. It is empty and noise emits from below it..");
+        room7.addEnemy(new Enemy("[Rat]", "rat", 1, new MeleeWeapon("[Claws]", "claws", 1, 1, 1)));
+        room7.addEnemy(new Enemy("Cock[roach]", "roach", 1, new MeleeWeapon("[Poison]", "poison", 1, 1, 1)));
 
         Room underTheFountain = new Room("Under the Fountain", "While dropping down into the fountain, music appears. " +
                 "You see ten goblins fistpumping and bootyshaking to the beat of russian music producer DJ Blyatman. Fast and very intense.");
@@ -62,10 +65,13 @@ public class Map {
                 "It is guarded by statues of tigers and from inside the mansion a legendary lisp is heard. \n" +
                 "Mike Tyson appears in front of you - gloves on, shirt off - ready to thuck you up.");
 
-        Room room8 = new Room("game.Room 8", "A completely dark room. Nothing is visible, but skittering noises roam the corners of the room.");
+        Room room8 = new Room("Dark Room", "A completely dark room. Nothing is visible, but skittering noises roam the corners of the room.");
 
-        Room room9 = new Room("game.Room 9", "This is strange. Upon entering the room, repetetive loud noises are heard. This seems to be a goblin rave party.");
-        room9.addItem(new Consumable("Strange [powder]", "Powder", -5, 5));
+        Room room9 = new Room("Goblin Rave Party", "This is strange. Upon entering the room, repetetive loud noises are heard. This seems to be a goblin rave party.");
+        room9.addEnemy(new Enemy("[Goblin] Raver #1", "goblin", 15, new MeleeWeapon("Dagger","dagger",5,5,5)));
+        room9.addEnemy(new Enemy("[Goblin] Raver #2", "goblin", 15, new MeleeWeapon("Dagger","dagger",5,5,5)));
+        room9.addEnemy(new Enemy("[Goblin] Raver #3", "goblin", 15, new MeleeWeapon("Dagger","dagger",5,5,5)));
+        room9.addItem(new Consumable("Strange [powder]", "powder", -5, 5));
         room9.addItem(new MeleeWeapon("Faintly glowing [sticks]", "sticks", 1, 1, 1));
 
         //set up connections
