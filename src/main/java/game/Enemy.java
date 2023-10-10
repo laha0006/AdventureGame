@@ -1,5 +1,6 @@
 package game;
 
+import item.Consumable;
 import item.Weapon;
 import ui.Color;
 import javax.sound.sampled.LineUnavailableException;
@@ -10,12 +11,20 @@ public class Enemy {
     private String longName;
     private int enemyHealthPoints;
     private Weapon weapon;
+    private Consumable consumable;
 
     public Enemy(String longName,String shortName, int healthPoints, Weapon weapon) {
         this.longName = longName;
         this.shortName = shortName;
         this.enemyHealthPoints = healthPoints;
         this.weapon = weapon;
+    }
+    public Enemy(String longName,String shortName, int healthPoints, Weapon weapon, Consumable consumable) {
+        this.longName = longName;
+        this.shortName = shortName;
+        this.enemyHealthPoints = healthPoints;
+        this.weapon = weapon;
+        this.consumable=consumable;
     }
 
     public String getLongName() {
@@ -31,6 +40,14 @@ public class Enemy {
     public int getWeaponAttack(){
         return weapon.attack();
     }
+    public Consumable getConsumable() {
+        return consumable;
+    }
+
+    public void setConsumable(Consumable consumable) {
+        this.consumable = consumable;
+    }
+
 
     public boolean isAlive() {
         return enemyHealthPoints > 0;
