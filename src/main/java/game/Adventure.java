@@ -66,6 +66,14 @@ public class Adventure {
         return player.getConsumables();
     }
 
+    public ArrayList<Item> getPlayerWeapons() {
+        return player.getWeapons();
+    }
+
+    public ArrayList<Item> getPlayerItems() {
+        return player.getItems();
+    }
+
     public Status equip(String itemName) {
         return player.equip(itemName);
     }

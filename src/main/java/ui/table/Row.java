@@ -20,6 +20,12 @@ public class Row {
         cells.add(new Cell(s));
         return this;
     }
+
+    public Row addCell(String s,boolean color){
+        cells.add(new Cell(s,color));
+        return this;
+    }
+
     public Row addCell(double d){
         cells.add(new Cell(d));
         return this;
