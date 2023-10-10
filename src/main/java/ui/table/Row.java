@@ -21,7 +21,7 @@ public class Row {
         return this;
     }
 
-    public Row addCell(String s,boolean color){
+    public Row addCell(String s,String color){
         cells.add(new Cell(s,color));
         return this;
     }
