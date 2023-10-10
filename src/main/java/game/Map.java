@@ -16,15 +16,17 @@ public class Map {
         room1.addItem(new Item("Dead adventurer's [letter]", "letter"));
         room1.addItem(new Consumable("Full [wine] bottle", "wine", -1, 2));
         room1.addItem(new Consumable("[Bread]", "bread", 10));
-        room1.addItem(new MeleeWeapon("Iron {Fist}","fist",15,10,10,
+        room1.addItem(new MeleeWeapon("Iron {sword}","sword",15,10,10,
                 new Audio("punch.wav")));
         room1.setAmbientSound(new Audio("vibe.wav"));
 
         Room room2 = new Room("Hell's Kitchen", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
         room2.addItem(new MeleeWeapon("A big strange {bone}", "Bone", 2, 5, 0));
-        room2.addEnemy(new Enemy("The big mutant [rat]", "rat", 10, new MeleeWeapon("Rat {claws}", "claws", 3, 5, 5)));
-        room2.addEnemy(new Enemy("[Baby] rat", "baby", 2, new MeleeWeapon("Baby rat {claws}", "claws", 3, 5, 5)));
-        room2.addEnemy(new Enemy("The Angry Chef [Gordon]", "Gordon", 30, new MeleeWeapon("The Sharpest {knife}", "knife",14 , 4, 3)));
+        room2.addEnemy(new Enemy("The big mutant [rat]", "rat", 10,
+                new MeleeWeapon("Rat {claws}", "claws", 3, 5, 5),
+                new Consumable("Health [Potion]", "potion",20,0)));
+        room2.addEnemy(new Enemy("The Angry Chef [Gordon]", "Gordon", 30,
+                new MeleeWeapon("Kitchen {knife}", "knife",14 , 4, 3)));
 
         //test
         room2.setAmbientSound(new Audio("vibe2.wav"));
@@ -32,28 +34,36 @@ public class Map {
 
         Room room3 = new Room("Trolls 'n' Rolls", "Troll market - here you can purchase cheese and hobbit-sandwiches.");
         room3.addItem(new Consumable("Freshly made hobbit-[sandwich]", "sandwich", 20));
-        room3.addItem(new Consumable("Freshly made hobbit-[sandwich]", "sandwich", 20));
-        room3.addEnemy(new Enemy("Sandwich-making [troll]", "troll", 40, new MeleeWeapon("Hobbit 'n' Cheese {slicer}", "slicer",12 , 4, 3)));
+        room3.addEnemy(new Enemy("Sandwich-making [troll]", "troll", 40,
+                new MeleeWeapon("Hobbit 'n' Cheese {slicer}", "slicer",12 , 4, 3)));
 
         //test
         room3.setAmbientSound(new Audio("vibe3.wav"));
 
 
         Room room4 = new Room("Tranquil Oasis", "A lush environment, the sound of running water echoes.");
-        room4.addItem((new MeleeWeapon("Two-handed[sword]", "sword", 20, 10, 5)));
+        room4.addItem((new MeleeWeapon("Two-handed[sword]", "sword", 10, 10, 4)));
         room4.addItem(new Consumable("Clean [water]", "water", 10));
-        room4.addEnemy(new Enemy("Old sleeping Fisher[man]","man",5,new MeleeWeapon("Old Fishing {pole}", "pole", 5, 1,0)));
+        room4.addEnemy(new Enemy("Old sleeping Fisher[man]","man",5,
+                new MeleeWeapon("Old Fishing {pole}", "pole", 5, 1,0),
+                new Consumable("Big [Fish]", "fish",25,0)));
+
         Room treasureRoom = new Room("Treasure Room", "Piles of gemstones, gold, and relics are stacked as far as the eye can see");
         treasureRoom.addItem(new Item("The [Treasure] of Adventure Game", "Treasure"));
         treasureRoom.addEnemy(new Enemy("Treasure [hoarder]", "hoarder", 1,
                 new MeleeWeapon("{Sparrow}, Golden scimitar of the Pirate King", "Sparrow", 40, 15, 5)));
+
         Room room6 = new Room("The Mine", "Old tracks for minecarts rusted on the ground, the stench of metal and rust lingers.");
         room6.addItem(new Consumable("Bag of [Doritos]", "Doritos", 8));
-        room6.addEnemy(new Enemy("Lord [Lars]", "Lars",20,new MeleeWeapon("White Support {Cane}","cane",10,10,10)));
+        room6.addEnemy(new Enemy("Lord [Lars]", "Lars",20,
+                new MeleeWeapon("White Support {Cane}","cane",10,10,10),
+                new Consumable("Health [Potion]", "potion",20,0)));
 
         Room room7 = new Room("Fountain Room", "In the middle of the room an old water fountain is placed. It is empty and noise emits from below it..");
-        room7.addEnemy(new Enemy("Green [Serpent]", "serpent", 30, new MeleeWeapon("Scaled {tail}", "tail", 3, 8, 5)));
-        room7.addEnemy(new Enemy("Jake the [Snake]", "snake", 30, new MeleeWeapon("Poisoned {fangs}", "fangs", 8, 6, 1)));
+        room7.addEnemy(new Enemy("Green [Serpent]", "serpent", 30,
+                new MeleeWeapon("Scaled {tail}", "tail", 3, 8, 5)));
+        room7.addEnemy(new Enemy("Jake the [Snake]", "snake", 30,
+                new MeleeWeapon("Poisoned {fangs}", "fangs", 8, 6, 1)));
 
         Room underTheFountain = new Room("Under the Fountain", "While dropping down into the fountain, music appears. " +
                 "You see ten goblins fistpumping and bootyshaking to the beat of Russian music producer DJ Blyatman. " +
@@ -67,14 +77,28 @@ public class Map {
         Room lairOfTyson = new Room("House of Tyson", "Below the goblin rave party, you find a gold-plated mansion. \n" +
                 "It is guarded by statues of tigers and from inside the mansion a legendary lisp is heard. \n" +
                 "Mike Tyson appears in front of you - gloves on, shirt off - ready to thuck you up.");
-        lairOfTyson.addEnemy(new Enemy("Miky [Tyson]", "Tyson", 125, new MeleeWeapon("{Earbiter}", "Earbiter", 20,100,5)));
+        lairOfTyson.addEnemy(new Enemy("Mike [Tyson], Destroyer of Ears", "Tyson", 125,
+                new MeleeWeapon("{Earbiter}", "Earbiter", 20,100,5),
+                new Consumable("You won the [game]!","game",100,100)));
 
         Room room8 = new Room("Dark Room", "A completely dark room. Nothing is visible, but skittering noises roam the corners of the room.");
-        room8.addEnemy(new Enemy("[Gorlock] the Destroyer", "[Gorlock]", 80, new MeleeWeapon("Sharp diamond {axe}", "axe", 10, 5, 8)));
+        room8.addEnemy(new Enemy("[Gorlock] the Destroyer", "[Gorlock]", 80,
+                new MeleeWeapon("Sharp diamond {axe}", "axe", 10, 5, 8)));
+        room8.addEnemy(new Enemy("Red [spider]","spider", 5,
+                new MeleeWeapon("Spider [leg]","leg", 5, 5,0)));
+        room8.addEnemy(new Enemy("Green [spider]","spider", 5,
+                        new MeleeWeapon("Spider [leg]","leg", 5, 5,0)));
+
         Room room9 = new Room("Goblin Rave Party", "This is strange. Upon entering the room, repetetive loud noises are heard. This seems to be a goblin rave party.");
-        room9.addEnemy(new Enemy("[Goblin] Raver #1", "goblin", 15, new MeleeWeapon("{Dagger}","dagger",5,5,5)));
-        room9.addEnemy(new Enemy("[Goblin] Raver #2", "goblin", 15, new MeleeWeapon("{Dagger}","dagger",5,5,5)));
-        room9.addEnemy(new Enemy("[Goblin] Raver #3", "goblin", 15, new MeleeWeapon("{Dagger}","dagger",5,5,5)));
+        room9.addEnemy(new Enemy("[Goblin] Raver #1", "goblin", 15,
+                new MeleeWeapon("{Dagger}","dagger",5,5,5),
+                new Consumable("Health [Potion]", "potion",20,0)));
+        room9.addEnemy(new Enemy("[Goblin] Raver #2", "goblin", 15,
+                new MeleeWeapon("{Dagger}","dagger",5,5,5),
+                new Consumable("Health [Potion]", "potion",20,0)));
+        room9.addEnemy(new Enemy("[Goblin] Raver #3", "goblin", 15,
+                new MeleeWeapon("{Dagger}","dagger",5,5,5),
+                new Consumable("Health [Potion]", "potion",20,0)));
         room9.addItem(new Consumable("Strange [powder]", "powder", -5, 5));
         room9.addItem(new MeleeWeapon("Faintly glowing [sticks]", "sticks", 1, 1, 1));
 
