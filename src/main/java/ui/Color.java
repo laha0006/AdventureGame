@@ -43,6 +43,7 @@ public class Color {
         return RED_BOLD + string + RESET;
     }
 
+
     public static String brightRed(String string) {
         return RED_BRIGHT + string + RESET;
     }

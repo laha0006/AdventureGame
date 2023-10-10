@@ -17,23 +17,29 @@ public class Map {
         room1.addItem(new Consumable("Full [wine] bottle", "wine", -1, 2));
         room1.addEnemy(new Enemy("[Lars]","[Lars]", 30, new MeleeWeapon("[mace]", "mace", 5,5,5)));
         //test
-        room1.addItem(new MeleeWeapon("Ancient [Gloves] of Testing","gloves",10,10,10,
+        room1.addItem(new MeleeWeapon("Ancient [Gloves] of Testing","gloves",50,10,10,
                 new Audio("punch.wav")));
         room1.setAmbientSound(new Audio("vibe.wav"));
 
-        Room room2 = new Room("game.Room 2", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
+        Room room2 = new Room("Hell's Kitchen", " The floor tiles are burning hot, with a smell of cooked flesh around the room.");
         room2.addItem(new MeleeWeapon("A big strange [bone]", "Bone", 2, 5, 0));
+        room2.addEnemy(new Enemy("The big mutant [rat]", "rat", 10, new MeleeWeapon("Rat [claws]", "claws", 3, 5, 5)));
+        room2.addEnemy(new Enemy("[Baby] rat", "baby", 2, new MeleeWeapon("Baby rat [claws]", "claws", 3, 5, 5)));
+
         //test
         room2.setAmbientSound(new Audio("vibe2.wav"));
 
-        Room room3 = new Room("game.Room 3", "Troll market - here you can purchase cheese and hobbit-sandwiches.");
+
+        Room room3 = new Room("Trolls 'n' Rolls", "Troll market - here you can purchase cheese and hobbit-sandwiches.");
         room3.addItem(new Consumable("Freshly made hobbit-[sandwich]", "sandwich", 10));
+        room3.addEnemy(new Enemy("The angry chef [troll]", "troll", 16, new MeleeWeapon("The Sharpest [knife]", "knife",14 , 1, 3)));
+
         //test
         room3.setAmbientSound(new Audio("vibe3.wav"));
 
 
-        Room room4 = new Room("game.Room 4", "A lush environment, the sound of running water echoes.");
-        room4.addItem((new MeleeWeapon("Short[sword]", "Sword", 5, 10, 3)));
+        Room room4 = new Room("Oasis", "A lush environment, the sound of running water echoes.");
+        room4.addItem((new MeleeWeapon("Short[sword]", "sword", 5, 10, 3)));
         room4.addItem(new Consumable("Clean [water]", "water", 5));
         room4.addItem(new MeleeWeapon("Old man's fishing [rod]", "rod", 4, 1, 1));
         room4.addEnemy(new Enemy("[Gorlock] the Destroyer", "[Gorlock]", 35, new MeleeWeapon("Big rusty [axe]", "axe", 5, 5, 8)));

@@ -18,8 +18,11 @@ public class Enemy {
         this.weapon = weapon;
     }
 
-    public String getName() {
-        return name;
+    public String getLongName() {
+        return longName;
+    }
+    public String getShortName(){
+        return shortName;
     }
 
     public Weapon getWeapon() {
