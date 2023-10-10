@@ -173,6 +173,23 @@ public class Player {
         }
         return foodItems;
     }
+    public ArrayList<Item> getWeapons() {
+        ArrayList<Item> weapons = new ArrayList<>();
+        for (Item item : inventory) {
+            if (item instanceof Weapon) weapons.add(item);
+        }
+        return weapons;
+    }
+    public ArrayList<Item> getItems() {
+        ArrayList<Item> items = new ArrayList<>();
+        for (Item item : inventory) {
+            if (item instanceof Weapon || item instanceof  Consumable) items.remove(item);
+           else items.add(item);
+        }
+        return items;
+    }
+
+
 
     public Status equip(String itemName) {
         Item itemToEquip = searchInv(itemName);
@@ -207,7 +224,7 @@ public class Player {
         result.setPlayerDamage(attackDamage);
         result.setOutputText(weaponSlot1.getShortName());
         result.setEnemyDamage(enemyDamage);
-        result.setEnemyName(currentEnemy.getName());
+        result.setEnemyName(currentEnemy.getShortName());
         result.setBroken(weaponSlot1.isBroken());
         result.setLostEffect(attackPower);
         attackPower = 0;

@@ -82,6 +82,9 @@ public class Adventure {
         return player.attack(enemyName);
     }
 
+    public ArrayList<Enemy> getCurrentRoomEnemies() {
+        return player.getEnemiesInCurrentRoom();
+    }
 }
 
 

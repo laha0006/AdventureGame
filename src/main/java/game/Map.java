@@ -38,13 +38,11 @@ public class Map {
         room4.addItem(new MeleeWeapon("Old man's fishing [rod]", "rod", 4, 1, 1));
         room4.addEnemy(new Enemy("[Gorlock] the Destroyer", "[Gorlock]", 35, new MeleeWeapon("Big rusty [axe]", "axe", 5, 5, 8)));
         //test enemy
-        room4.addEnemy(new Enemy("Lars",20,new MeleeWeapon("White Support [Cane]","cane",10,10,10)));
 
-        Room treasureRoom = new Room("Treasure game.Room", "Piles of gemstones, gold, and relics are stacked as far as the eye can see");
-        treasureRoom.addItem(new Item("The [Treasure] of game.Adventure Game", "Treasure"));
+        Room treasureRoom = new Room("Treasure Room", "Piles of gemstones, gold, and relics are stacked as far as the eye can see");
+        treasureRoom.addItem(new Item("The [Treasure] of Adventure Game", "Treasure"));
 
-        Room room6 = new Room("game.Room 6", "Old tracks for minecarts rusted on the ground, the stench of metal and rust lingers.");
-        room6.addItem(new Item("A rusty and dusty [key]", "Key"));
+        Room room6 = new Room("The Mine", "Old tracks for minecarts rusted on the ground, the stench of metal and rust lingers.");
         room6.addItem(new Consumable("Bag of [Doritos]", "Doritos", 2));
         room6.addItem(new RangedWeapon("A big heavy [crossbow]", "crossbow", 5, 10));
         room6.addEnemy(new Enemy("Lord [Lars]", "Lars",20,new MeleeWeapon("White Support [Cane]","cane",10,10,10)));
@@ -54,16 +52,17 @@ public class Map {
         room7.addEnemy(new Enemy("Cock[roach]", "roach", 1, new MeleeWeapon("[Poison]", "poison", 1, 1, 1)));
 
         Room underTheFountain = new Room("Under the Fountain", "While dropping down into the fountain, music appears. " +
-                "You see ten goblins fistpumping and bootyshaking to the beat of russian music producer DJ Blyatman. Fast and very intense.");
-        underTheFountain.addItem(new Consumable("Strange [powder]", "Powder", -5, 5));
-        underTheFountain.addItem(new Consumable("Strange [powder]", "Powder", -5, 5));
-        underTheFountain.addItem(new Consumable("Strange [powder]", "Powder", -5, 5));
-        underTheFountain.addItem(new Item("Wet Adidas track[suit]", "suit"));
+                "You see ten goblins fistpumping and bootyshaking to the beat of Russian music producer DJ Blyatman. The goblins does not seem ready to fight, byt Blyatman does.");
+        underTheFountain.addEnemy(new Enemy("DJ Blyatman", "Blyatman", 50, new RangedWeapon("Bass","bass", 15,10) ));
+        underTheFountain.addItem(new Consumable("Strange [powder]", "powder", -5, 5));
+        underTheFountain.addItem(new Consumable("Strange [powder]", "powder", -5, 5));
+        underTheFountain.addItem(new Consumable("Strange [powder]", "powder", -5, 5));
         underTheFountain.addItem(new MeleeWeapon("Boxing [gloves]", "gloves", 10, 10, 4));
 
         Room lairOfTyson = new Room("House of Tyson", "Below the goblin rave party, you find a gold-plated mansion. \n" +
                 "It is guarded by statues of tigers and from inside the mansion a legendary lisp is heard. \n" +
                 "Mike Tyson appears in front of you - gloves on, shirt off - ready to thuck you up.");
+        lairOfTyson.addEnemy(new Enemy("Miky [Tyson]", "Tyson", 100, new MeleeWeapon("Big Fist", "fist", 25,100,5)));
 
         Room room8 = new Room("Dark Room", "A completely dark room. Nothing is visible, but skittering noises roam the corners of the room.");
 
