@@ -1,5 +1,7 @@
 package ui;
 
+import game.Enemy;
+import item.Consumable;
 import messages.*;
 import game.Adventure;
 import item.Item;
@@ -176,7 +178,8 @@ public class UserInterface {
 
     private void move(Direction direction) {
         if (adventure.movePlayer(direction)) {
-            System.out.println("You went north to " + adventure.getCurrentRoomName());
+            String cardinalDirection = direction.toString().toLowerCase();
+            System.out.println("You went " + cardinalDirection + " to " + adventure.getCurrentRoomName());
             System.out.println(adventure.getCurrentRoomDescription());
         } else {
             System.out.println("You can't go that way.");

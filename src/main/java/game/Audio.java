@@ -73,7 +73,6 @@ public class Audio {
         }
         audioClip.setMicrosecondPosition(1);
         audioClip.start();
-        System.out.println("Play sound");
     }
 
 

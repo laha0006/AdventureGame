@@ -230,6 +230,10 @@ public class Player {
         return result;
     }
 
+    public ArrayList<Enemy> getEnemiesInCurrentRoom() {
+        return currentPosition.getEnemies();
+    }
+
 
     private void updateAmbientSound() {
         if (previousPosition.getAmbientSound() != null) {

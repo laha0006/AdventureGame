@@ -159,6 +159,10 @@ public class Room {
         return loot;
     }
 
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
     public Audio getAmbientSound() {
         return ambientSound;
     }
