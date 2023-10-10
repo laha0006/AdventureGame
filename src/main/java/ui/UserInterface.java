@@ -258,47 +258,7 @@ public class UserInterface {
         System.out.println("Enter 'consumables' for a list of your consumables");
         System.out.println("Enter 'consume [consumable]' to gain it's effect");
         System.out.println("Enter 'HP' to show current healthpoints");
-        System.out.println("Enter 'equip' to equip a weapon");
+        System.out.println("Enter 'equip {weapon}' to equip a weapon");
         System.out.println("Enter 'attack [anything]' to attack an enemy");
     }
-
-
-    public void showLoot(ArrayList<Item> loot) {
-        if (!loot.isEmpty()) {
-            System.out.println("You discover: ");
-            if (loot.size() == 1) {
-                System.out.print(loot.get(0).getLongName());
-            } else {
-                for (Item item : loot) {
-                    System.out.print(item.getLongName() + ", ");
-                }
-            }
-        } else {
-            System.out.print("You discover nothing.");
-        }
-
-    }
-
-    public void showInventory(ArrayList<Item> inventory) {
-        if (!inventory.isEmpty()) {
-            System.out.println("You are carrying: ");
-            int count = 1;
-            if (inventory.size() == 1) {
-                System.out.print(inventory.get(0).getLongName()+"\n");
-            } else {
-                for (Item item : inventory) {
-                    if(count != inventory.size()) {
-                        System.out.print(item.getLongName() + ", ");
-                        count++;
-                    } else {
-                        System.out.print("and " + item.getLongName() + ".\n");
-                    }
-                }
-            }
-        } else {
-            System.out.print("You carry nothing.");
-        }
-
-    }
-
 }
