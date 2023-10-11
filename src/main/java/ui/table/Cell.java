@@ -5,6 +5,7 @@ import ui.Color;
 public class Cell {
     private int intValue;
     private String stringValue;
+    private String color = "";
     private double doubleValue;
     private boolean bool;
     private final boolean INT;
@@ -28,17 +29,15 @@ public class Cell {
         size = stringValue.length();
     }
 
-    public Cell(String stringValue,boolean color) {
+    public Cell(String stringValue,String color) {
         this.stringValue = stringValue;
+        this.color = color;
         INT = false;
         STRING = true;
         DOUBLE = false;
-        if(color) {
-            size = stringValue.length() - Color.boldRed("").length();
-        } else {
-            size = stringValue.length();
-        }
+        size = stringValue.length();
     }
+
 
     public Cell(boolean bool) {
         this.bool = bool;
@@ -73,6 +72,10 @@ public class Cell {
     }
     public boolean getBool() {
         return bool;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public boolean isINT() {

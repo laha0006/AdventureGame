@@ -10,6 +10,7 @@ import ui.table.Table;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -77,6 +78,9 @@ public class UserInterface {
 
                 case "hp":
                     System.out.println("You currently have " + adventure.getPlayerHealthPoints() +"HP");
+                    break;
+                case "rarity":
+                    rarityChart();
                     break;
 
             }
@@ -198,10 +202,10 @@ public class UserInterface {
             if ( i < foeSize) {
                 foe = foes.get(i).getLongName();
             }
-            table.addRow(new Row().addCell(item).addCell(foe));
+            table.addRow(new Row().addCell(item).addCell(foe,Color.RED));
 
         }
-        System.out.println(table.getTableString());
+        System.out.print(table.getTableString());
 
     }
     private void inventory() {
@@ -235,8 +239,18 @@ public class UserInterface {
 
         }
         System.out.println(table.getTableString());
-
     }
+
+    private void rarityChart() {
+        Table table = new Table("Item Rarity Chart",
+                new ArrayList<>(List.of("Rarity")),true);
+        for(ItemRarity rarity : ItemRarity.values()) {
+            table.addRow(new Row().addCell(rarity.name(),rarity.color));
+        }
+        System.out.println(table.getTableString());
+    }
+
+
 
     private void move(Direction direction) {
         if (adventure.movePlayer(direction)) {

@@ -1,5 +1,7 @@
 package ui.table;
 
+import ui.Color;
+
 import java.util.ArrayList;
 
 public class Table {
@@ -59,12 +61,14 @@ public class Table {
                 sum += i + 2;
             }
         }
-        length = sum + size + 1;
+        int tempLength = sum + size + 1;
+        length = Math.max(tempLength,header.length()+1+size);
+        System.out.println("length = " + length);
     }
 
     private void setInitColumnSizes() {
         for (String s : columns) {
-            columnSizes.add(s.length()+2);
+            columnSizes.add(Math.max((s.length()+2),header.length()));
         }
     }
 
@@ -78,6 +82,7 @@ public class Table {
                 count++;
             }
         }
+
     }
 
     public boolean addRow(Row row) {
@@ -94,10 +99,15 @@ public class Table {
         int length = text.length();
         int spaces = (space - length) / 2;
         int offset = 0;
+        System.out.println("text = " + text);
+        System.out.println("space = " + space);
+        System.out.println("length = " + length);
+        System.out.println("spaces = " + spaces);
+        System.out.println("offset = " + offset);
         if (length % 2 == 0 || space % 2 == 0) {
             offset = length % 2 + space % 2;
         }
-
+        System.out.println("spaces = " + spaces);
         centerText.append(WHITESPACE.repeat(spaces))
                 .append(text).append(WHITESPACE.repeat(spaces+offset));
         return centerText.toString();
@@ -123,6 +133,7 @@ public class Table {
     }
 
     private String createHeaderString() {
+        System.out.println("this.length = " + this.length);
         return createTableLine(TOP_LEFT_CORNER, TOP_RIGHT_CORNER) +
                 "\n" +
                 SEPERATOR +
@@ -191,7 +202,8 @@ public class Table {
                     type = "s";
                     prefix = "%-";
                 }
-                template.append(prefix).append(columnSizes.get(cellCount)).append(type);
+
+                template.append(cell.getColor()+ prefix).append(columnSizes.get(cellCount)).append(type+Color.RESET);
                 if (cellCount != size - 1) {
                     template.append(" ");
                 } else {
@@ -203,6 +215,7 @@ public class Table {
                     rowsString.append(String.format(template.toString(), cell.getDoubleValue()));
                 } else if (cell.isSTRING()) {
                     rowsString.append(String.format(template.toString(), cell.getStringValue()));
+
                 } else {
                     //TODO Make more general. overload ui.table.Cell constructor
                     //to facilitate a new ui.table.Cell(true,"TrueString","FalseString");
