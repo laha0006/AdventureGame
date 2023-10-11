@@ -99,11 +99,6 @@ public class Table {
         int length = text.length();
         int spaces = (space - length) / 2;
         int offset = 0;
-        System.out.println("text = " + text);
-        System.out.println("space = " + space);
-        System.out.println("length = " + length);
-        System.out.println("spaces = " + spaces);
-        System.out.println("offset = " + offset);
         if (length % 2 == 0 || space % 2 == 0) {
             offset = length % 2 + space % 2;
         }
