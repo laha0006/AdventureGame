@@ -127,7 +127,6 @@ public class Table {
     }
 
     private String createHeaderString() {
-        System.out.println("this.length = " + this.length);
         return createTableLine(TOP_LEFT_CORNER, TOP_RIGHT_CORNER) +
                 "\n" +
                 SEPERATOR +
