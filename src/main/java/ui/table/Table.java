@@ -63,7 +63,7 @@ public class Table {
         }
         int tempLength = sum + size + 1;
         length = Math.max(tempLength,header.length()+1+size);
-        System.out.println("length = " + length);
+
     }
 
     private void setInitColumnSizes() {
@@ -99,15 +99,9 @@ public class Table {
         int length = text.length();
         int spaces = (space - length) / 2;
         int offset = 0;
-        System.out.println("text = " + text);
-        System.out.println("space = " + space);
-        System.out.println("length = " + length);
-        System.out.println("spaces = " + spaces);
-        System.out.println("offset = " + offset);
         if (length % 2 == 0 || space % 2 == 0) {
             offset = length % 2 + space % 2;
         }
-        System.out.println("spaces = " + spaces);
         centerText.append(WHITESPACE.repeat(spaces))
                 .append(text).append(WHITESPACE.repeat(spaces+offset));
         return centerText.toString();
@@ -133,7 +127,6 @@ public class Table {
     }
 
     private String createHeaderString() {
-        System.out.println("this.length = " + this.length);
         return createTableLine(TOP_LEFT_CORNER, TOP_RIGHT_CORNER) +
                 "\n" +
                 SEPERATOR +
