@@ -63,7 +63,7 @@ public class Table {
         }
         int tempLength = sum + size + 1;
         length = Math.max(tempLength,header.length()+1+size);
-        System.out.println("length = " + length);
+
     }
 
     private void setInitColumnSizes() {
