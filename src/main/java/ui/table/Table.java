@@ -107,7 +107,6 @@ public class Table {
         if (length % 2 == 0 || space % 2 == 0) {
             offset = length % 2 + space % 2;
         }
-        System.out.println("spaces = " + spaces);
         centerText.append(WHITESPACE.repeat(spaces))
                 .append(text).append(WHITESPACE.repeat(spaces+offset));
         return centerText.toString();
