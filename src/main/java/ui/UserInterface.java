@@ -127,7 +127,7 @@ public class UserInterface {
 
                     switch (itemToEquip){
                         case EQUIPPABLE:
-                            System.out.println("You equipped " + splitInput[1]);
+                            System.out.println("You equipped " + itemToEquip.getColor() + itemToEquip.getLongName() + Color.RESET);
                             break;
                         case NON_EQUIPPABLE:
                             System.out.println(splitInput[1] + " is not equippable ");
@@ -136,7 +136,7 @@ public class UserInterface {
                             System.out.println(splitInput[1] + " is broken");
                             break;
                         case MISSING:
-                            System.out.println(splitInput[1] + " is missing ");
+                            System.out.println(splitInput[1] + " is not in your inventory ");
                             break;
 
                     }
@@ -155,14 +155,14 @@ public class UserInterface {
                             System.out.println(attack.getOutputText() + " is broken.");
                             break;
                         case SUCCESS:
-                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " and deal " + Color.RED_BOLD + attack.getPlayerDamage() + Color.RESET + " damage. Good job!");
                             System.out.println(attack.getEnemyName() + " has " + attack.getEnemyHealthPoints() + "HP left.");
-                            System.out.println(attack.getEnemyName() + " hit you for " + attack.getEnemyDamage() + " damage, and you have " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
+                            System.out.println(attack.getEnemyName() + " hit you for " + Color.RED_BOLD + attack.getEnemyDamage() + Color.RESET + " damage, and you have " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
                             if(attack.getLostEffect() != 0) {
                                 System.out.println("You feel normal.");
                             }
                             if (attack.isBroken())
-                                System.out.println("Your " + attack.getOutputText() + " broke.");
+                                System.out.println("Your " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " broke.");
                             break;
                         case ENEMY_DEAD:
                             System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
@@ -171,11 +171,11 @@ public class UserInterface {
                                 System.out.println("You feel normal.");
                             }
                             if (attack.isBroken())
-                                System.out.println("Your " + attack.getOutputText() + " broke.");
+                                System.out.println("Your " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " broke.");
                             break;
                         case PLAYER_DEAD:
-                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
-                            System.out.println(attack.getEnemyName() + " hit you for " + attack.getEnemyDamage() + " damage, and you die.");
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " and deal " +Color.RED_BOLD +  attack.getPlayerDamage() + Color.RESET +  " damage. Good job!");
+                            System.out.println(attack.getEnemyName() + " hit you for " + Color.RED_BOLD + attack.getEnemyDamage() + Color.RESET + " damage, and you die.");
                             System.exit(0);
                     }
                     break;
