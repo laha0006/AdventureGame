@@ -42,7 +42,7 @@ public class Map {
 
 
         Room room4 = new Room("Tranquil Oasis", "A lush environment, the sound of running water echoes.");
-        room4.addItem((new MeleeWeapon("Two-handed[sword]", "sword", 10, 10, 4,ItemRarity.COMMON,swordHit)));
+        room4.addItem((new MeleeWeapon("Two-handed {blade}", "blade", 10, 10, 4,ItemRarity.COMMON,swordHit)));
         room4.addItem(new Consumable("Clean [water]", "water", 10,ItemRarity.COMMON));
         room4.addEnemy(new Enemy("Old sleeping Fisher[man]","man",5,
                 new MeleeWeapon("Old Fishing {pole}", "pole", 5, 1,0,ItemRarity.COMMON, punch),

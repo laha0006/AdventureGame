@@ -104,10 +104,10 @@ public class UserInterface {
                     break;
                 case "consume", "eat", "inject", "sniff", "drink":
                     ReturnConsumable itemToConsume = adventure.consumeItem(splitInput[1]);
-                    String color = itemToConsume.getItem().getRarity();
-
+                    String color = "";
                     switch(itemToConsume.getStatus()) {
                         case CONSUMABLE:
+                            color = itemToConsume.getItem().getRarity();
                             System.out.println("Consumed " + color  + itemToConsume.getOutputText() + Color.RESET + " and gained " + itemToConsume.getItemHealthGain() + "HP");
                             System.out.println("Your current health is now " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
                             if(itemToConsume.getEffect() != 0) {
@@ -115,7 +115,8 @@ public class UserInterface {
                             }
                             break;
                         case NON_CONSUMABLE:
-                            System.out.println("You can't consume " + itemToConsume.getOutputText());
+                            color = itemToConsume.getItem().getRarity();
+                            System.out.println("You can't consume " + color + itemToConsume.getOutputText() + Color.RESET);
                             break;
                         case MISSING:
                             System.out.println("You don't carry " + splitInput[1]);
@@ -234,7 +235,7 @@ public class UserInterface {
             }
             if ( i < consumablesSize) {
                 consumable = consumables.get(i).getLongName();
-                consumableColor = consumables.get(i).getLongName();
+                consumableColor = consumables.get(i).getRarity();
             }
             if (i < itemsSize) {
                 item = items.get(i).getLongName();
