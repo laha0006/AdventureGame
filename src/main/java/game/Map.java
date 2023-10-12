@@ -13,6 +13,9 @@ public class Map {
     }
 
     public void buildWorld() {
+        Audio swordHit = new Audio("swordHit.wav");
+        Audio punch = new Audio("punch.wav");
+
         Room room1 = new Room("Spawn", "The start of your adventures begins here. Two doors are visible to the east and south.");
         room1.addItem(new Item("Dead adventurer's [letter]", "letter", ItemRarity.COMMON));
         room1.addItem(new Consumable("Full [wine] bottle", "wine", -1, ItemRarity.RARE,2));
@@ -27,10 +30,8 @@ public class Map {
                 new MeleeWeapon("Rat {claws}", "claws", 3, 5, 5,ItemRarity.COMMON,swordHit),
                 new Consumable("Health [Potion]", "potion",20, ItemRarity.COMMON)));
         room2.addEnemy(new Enemy("The Angry Chef [Gordon]", "Gordon", 30,
-                new MeleeWeapon("Kitchen {knife}", "knife",14 , 4, 3,ItemRarity.UNCOMMON)));
-
-        //test
-        room2.setAmbientSound(new Audio("hellsKitchen.wav"));
+                new MeleeWeapon("Kitchen {knife}", "knife",14 , 4, 3,ItemRarity.UNCOMMON,swordHit)));
+        room2.setAmbientSound(new Audio("frying.wav"));
 
 
         Room room3 = new Room("Trolls 'n' Rolls", "Troll market - here you can purchase cheese and hobbit-sandwiches.");
