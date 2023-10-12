@@ -7,9 +7,6 @@ public class MeleeWeapon extends Weapon {
     private int attackPower;
 
 
-    public MeleeWeapon(String longName, String shortName, int damage, int durability, int attackPower, ItemRarity rarity) {
-        super(longName, shortName, damage, durability,rarity);
-    }
     public MeleeWeapon(String longName, String shortName, int damage, int durability, int attackPower,ItemRarity rarity, Audio attackSound) {
         super(longName, shortName, damage, durability,rarity,attackSound);
     }
