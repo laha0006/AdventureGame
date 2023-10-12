@@ -219,13 +219,13 @@ public class Player {
             result.setStatus(Status.MISSING);
             return result;
         }
+        result.setColor(weaponSlot1.getRarity());
+
         if (weaponSlot1.isBroken()) {
             result.setOutputText(weaponSlot1.getLongName());
             result.setStatus(Status.BROKEN);
             return result;
         }
-
-        result.setColor(weaponSlot1.getRarity());
 
         if (currentEnemy == null) {
             result.setStatus(Status.NO_ENEMY);
