@@ -1,16 +1,14 @@
 package item;
 
 import game.Audio;
+import messages.ItemRarity;
 
 public class MeleeWeapon extends Weapon {
     private int attackPower;
 
 
-    public MeleeWeapon(String longName, String shortName, int damage, int durability, int attackPower) {
-        super(longName, shortName, damage, durability);
-    }
-    public MeleeWeapon(String longName, String shortName, int damage, int durability, int attackPower, Audio attackSound) {
-        super(longName, shortName, damage, durability,attackSound);
+    public MeleeWeapon(String longName, String shortName, int damage, int durability, int attackPower,ItemRarity rarity, Audio attackSound) {
+        super(longName, shortName, damage, durability,rarity,attackSound);
     }
 
     @Override

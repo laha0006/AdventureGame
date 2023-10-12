@@ -19,7 +19,7 @@ public class Enemy {
         this.enemyHealthPoints = healthPoints;
         this.weapon = weapon;
     }
-    public Enemy(String longName,String shortName, int healthPoints, Weapon weapon, Consumable consumable) {
+    public Enemy(String longName,String shortName, int healthPoints, Weapon weapon,  Consumable consumable) {
         this.longName = longName;
         this.shortName = shortName;
         this.enemyHealthPoints = healthPoints;

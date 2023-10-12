@@ -1,9 +1,6 @@
 package game;
 
-import messages.Direction;
-import messages.ReturnAttack;
-import messages.ReturnConsumable;
-import messages.Status;
+import messages.*;
 import item.Consumable;
 import item.Item;
 import item.Weapon;
@@ -18,13 +15,14 @@ public class Player {
     private int healthPoints;
     private int attackPower;
     private Weapon weaponSlot1;
-    private Weapon weaponSlot2;
+    private Audio missSound;
     //inventory
 
     public Player() {
         inventory = new ArrayList<Item>();
         maxHealthPoints = 60;
         healthPoints = 50;
+        missSound = new Audio("swordMiss.wav");
     }
 
     public boolean movePlayer(Direction direction) {
@@ -191,14 +189,27 @@ public class Player {
 
 
 
-    public Status equip(String itemName) {
+    public ReturnEquip equip(String itemName) {
         Item itemToEquip = searchInv(itemName);
-        if (itemToEquip == null) return Status.MISSING;
-        if (!(itemToEquip instanceof Weapon)) return Status.NON_EQUIPPABLE;
-        if (((Weapon) itemToEquip).isBroken()) return Status.BROKEN;
-        weaponSlot1 = (Weapon) itemToEquip;
-        return Status.EQUIPPABLE;
+        ReturnEquip result = new ReturnEquip();
+        if (itemToEquip == null) {
+            result.setStatus(Status.MISSING);
+            return result;
+        }
+        result.setLongName(itemToEquip.getLongName());
+        result.setColor(itemToEquip.getRarity());
+        if (!(itemToEquip instanceof Weapon)) {
+            result.setStatus(Status.NON_EQUIPPABLE);
+            return result;
+        }
+        if (((Weapon) itemToEquip).isBroken()) {
+            result.setStatus(Status.BROKEN);
+            return result;
+        }
 
+        weaponSlot1 = (Weapon) itemToEquip;
+        result.setStatus(Status.EQUIPPABLE);
+        return result;
     }
 
     public ReturnAttack attack(String enemyName) {
@@ -213,9 +224,13 @@ public class Player {
             result.setStatus(Status.BROKEN);
             return result;
         }
+
+        result.setColor(weaponSlot1.getRarity());
+
         if (currentEnemy == null) {
             result.setStatus(Status.NO_ENEMY);
             result.setOutputText(weaponSlot1.getLongName());
+            missSound.playOnce();
             return result;
         }
         int attackDamage = weaponSlot1.attack() + attackPower;

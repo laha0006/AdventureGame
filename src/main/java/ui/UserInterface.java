@@ -89,7 +89,7 @@ public class UserInterface {
                 case "take":
                     Item itemToTake = adventure.takeItem(splitInput[1]);
                     if(itemToTake != null) {
-                        System.out.println("Added " + itemToTake.getLongName() + " to inventory.");
+                        System.out.println("Added " + itemToTake.getRarity() + itemToTake.getLongName() + Color.RESET +  " to inventory.");
                     } else {
                         System.out.println(splitInput[1] +" doesn't exist");
                     }
@@ -104,10 +104,11 @@ public class UserInterface {
                     break;
                 case "consume", "eat", "inject", "sniff", "drink":
                     ReturnConsumable itemToConsume = adventure.consumeItem(splitInput[1]);
+                    String color = itemToConsume.getItem().getRarity();
 
                     switch(itemToConsume.getStatus()) {
                         case CONSUMABLE:
-                            System.out.println("Consumed " + itemToConsume.getOutputText() + " and gained " + itemToConsume.getItemHealthGain() + "HP");
+                            System.out.println("Consumed " + color  + itemToConsume.getOutputText() + Color.RESET + " and gained " + itemToConsume.getItemHealthGain() + "HP");
                             System.out.println("Your current health is now " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
                             if(itemToConsume.getEffect() != 0) {
                                 System.out.println("You gained " + itemToConsume.getEffect() + " attack power.");
@@ -123,20 +124,20 @@ public class UserInterface {
                     }
                     break;
                 case "equip":
-                    Status itemToEquip = adventure.equip(splitInput[1]);
+                    ReturnEquip itemToEquip = adventure.equip(splitInput[1]);
 
-                    switch (itemToEquip){
+                    switch (itemToEquip.getStatus()){
                         case EQUIPPABLE:
-                            System.out.println("You equipped " + splitInput[1]);
+                            System.out.println("You equipped " + itemToEquip.getColor() + itemToEquip.getLongName() + Color.RESET);
                             break;
                         case NON_EQUIPPABLE:
-                            System.out.println(splitInput[1] + " is not equippable ");
+                            System.out.println(itemToEquip.getColor() + itemToEquip.getLongName() + Color.RESET + " is not equippable ");
                             break;
                         case BROKEN:
-                            System.out.println(splitInput[1] + " is broken");
+                            System.out.println(itemToEquip.getColor() + itemToEquip.getLongName() + Color.RESET + " is broken");
                             break;
                         case MISSING:
-                            System.out.println(splitInput[1] + " is missing ");
+                            System.out.println(splitInput[1] + " is not in your inventory ");
                             break;
 
                     }
@@ -149,33 +150,33 @@ public class UserInterface {
                             System.out.println("You flail your fists in the air awkwardly dealing no damage. ");
                             break;
                         case NO_ENEMY:
-                            System.out.println("You swing your " + attack.getOutputText() + " and hit nothing but air.");
+                            System.out.println("You swing your " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " and hit nothing but air.");
                             break;
                         case BROKEN:
-                            System.out.println(attack.getOutputText() + " is broken.");
+                            System.out.println(attack.getColor() +  attack.getOutputText() + Color.RESET + " is broken.");
                             break;
                         case SUCCESS:
-                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " and deal " + Color.RED_BOLD + attack.getPlayerDamage() + Color.RESET + " damage. Good job!");
                             System.out.println(attack.getEnemyName() + " has " + attack.getEnemyHealthPoints() + "HP left.");
-                            System.out.println(attack.getEnemyName() + " hit you for " + attack.getEnemyDamage() + " damage, and you have " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
+                            System.out.println(attack.getEnemyName() + " hit you for " + Color.RED_BOLD + attack.getEnemyDamage() + Color.RESET + " damage, and you have " + adventure.getPlayerHealthPoints() + "/" + adventure.getPlayerMaxHealthPoints() + "HP");
                             if(attack.getLostEffect() != 0) {
                                 System.out.println("You feel normal.");
                             }
                             if (attack.isBroken())
-                                System.out.println("Your " + attack.getOutputText() + " broke.");
+                                System.out.println("Your " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " broke.");
                             break;
                         case ENEMY_DEAD:
-                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getColor() +  attack.getOutputText() + Color.RESET + " and deal " + Color.RED_BOLD +  attack.getPlayerDamage() + Color.RESET + " damage. Good job!");
                             System.out.println(attack.getEnemyName() + " falls over and dies.");
                             if(attack.getLostEffect() != 0) {
                                 System.out.println("You feel normal.");
                             }
                             if (attack.isBroken())
-                                System.out.println("Your " + attack.getOutputText() + " broke.");
+                                System.out.println("Your " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " broke.");
                             break;
                         case PLAYER_DEAD:
-                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getOutputText() + " and deal " + attack.getPlayerDamage() + " damage. Good job!");
-                            System.out.println(attack.getEnemyName() + " hit you for " + attack.getEnemyDamage() + " damage, and you die.");
+                            System.out.println("You attack " + attack.getEnemyName() + " with " + attack.getColor() +  attack.getOutputText() + Color.RESET  + " and deal " +Color.RED_BOLD +  attack.getPlayerDamage() + Color.RESET +  " damage. Good job!");
+                            System.out.println(attack.getEnemyName() + " hit you for " + Color.RED_BOLD + attack.getEnemyDamage() + Color.RESET + " damage, and you die.");
                             System.exit(0);
                     }
                     break;
@@ -196,13 +197,15 @@ public class UserInterface {
         for (int i = 0; i < count; i++) {
             String item = "";
             String foe = "";
+            String itemColor = "";
             if ( i < lootSize) {
                 item = loot.get(i).getLongName();
+                itemColor = loot.get(i).getRarity();
             }
             if ( i < foeSize) {
                 foe = foes.get(i).getLongName();
             }
-            table.addRow(new Row().addCell(item).addCell(foe,Color.RED));
+            table.addRow(new Row().addCell(item,itemColor).addCell(foe,Color.RED));
 
         }
         System.out.print(table.getTableString());
@@ -223,19 +226,21 @@ public class UserInterface {
         int count = Math.max(weaponsSize,
                 Math.max(consumablesSize,itemsSize));
         for (int i = 0; i < count; i++) {
-            String weapon = "";
-            String consumable = "";
-            String item = "";
+            String weapon = "", consumable = "", item = "";
+            String weaponColor = "",itemColor = "",consumableColor = "";
             if ( i < weaponsSize) {
                 weapon = weapons.get(i).getLongName();
+                weaponColor = weapons.get(i).getRarity();
             }
             if ( i < consumablesSize) {
                 consumable = consumables.get(i).getLongName();
+                consumableColor = consumables.get(i).getLongName();
             }
             if (i < itemsSize) {
                 item = items.get(i).getLongName();
+                itemColor = items.get(i).getRarity();
             }
-            table.addRow(new Row().addCell(weapon).addCell(consumable).addCell(item));
+            table.addRow(new Row().addCell(weapon,weaponColor).addCell(consumable,consumableColor).addCell(item,itemColor));
 
         }
         System.out.println(table.getTableString());
@@ -263,16 +268,17 @@ public class UserInterface {
     }
 
     public void help() {
-        System.out.println("You use the following commands to play the game;");
-        System.out.println("To move in a direction enter 'N', 'S', 'E', 'W' to move north, south, east or west.");
-        System.out.println("Enter 'look' to look around at your current location");
-        System.out.println("Enter 'inv' or 'inventory' to open your inventory");
-        System.out.println("Enter 'take [item]' to pick-up item");
-        System.out.println("Enter 'drop [item]' to drop item");
-        System.out.println("Enter 'consumables' for a list of your consumables");
-        System.out.println("Enter 'consume [consumable]' to gain it's effect");
-        System.out.println("Enter 'HP' to show current healthpoints");
-        System.out.println("Enter 'equip {weapon}' to equip a weapon");
-        System.out.println("Enter 'attack [anything]' to attack an enemy");
+        Table helpTable = new Table("Help      ",new ArrayList<>(List.of("Command","Description")),true);
+        helpTable.addRow(new Row().addCell("n,s,e,w").addCell("Move in that direction"));
+        helpTable.addRow(new Row().addCell("look").addCell("Search the room"));
+        helpTable.addRow(new Row().addCell("inventory, inv").addCell("Show inventory"));
+        helpTable.addRow(new Row().addCell("take [item]").addCell("Pick up [item]"));
+        helpTable.addRow(new Row().addCell("drop [item]").addCell("Drops [item]"));
+        helpTable.addRow(new Row().addCell("consume [consumable]").addCell("Gain consumable effect"));
+        helpTable.addRow(new Row().addCell("hp").addCell("Show your Health Points (HP)"));
+        helpTable.addRow(new Row().addCell("equip {weapon}").addCell("Equips {weapon}"));
+        helpTable.addRow(new Row().addCell("attack [enemy]").addCell("Attacks [enemy]"));
+        helpTable.addRow(new Row().addCell("rarity").addCell("List item rarity colors"));
+        System.out.println(helpTable.getTableString());
     }
 }

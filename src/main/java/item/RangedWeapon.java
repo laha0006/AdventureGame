@@ -1,10 +1,12 @@
 package item;
 
+import messages.ItemRarity;
+
 public class RangedWeapon extends Weapon{
     private int range;
 
-    public RangedWeapon(String longName, String shortName, int damage, int durability){
-        super(longName, shortName, damage, durability);
+    public RangedWeapon(String longName, String shortName, int damage, int durability, ItemRarity rarity){
+        super(longName, shortName, damage, durability,rarity);
 
     }
 
