@@ -1,6 +1,7 @@
 package item;
 
 import game.Audio;
+import messages.ItemRarity;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
@@ -10,15 +11,15 @@ public abstract class Weapon extends Item {
     private int durability;
     private Audio attackSound;
 
-    public Weapon(String longName,String shortName, int damage, int durability){
-        super(longName,shortName);
+    public Weapon(String longName, String shortName, int damage, int durability, ItemRarity rarity){
+        super(longName,shortName,rarity);
         this.damage = damage;
         this.durability = durability;
         attackSound = null;
     }
 
-    public Weapon(String longName,String shortName, int damage, int durability,Audio attackSound){
-        super(longName,shortName);
+    public Weapon(String longName,String shortName, int damage, int durability,ItemRarity rarity,Audio attackSound){
+        super(longName,shortName,rarity);
         this.damage = damage;
         this.durability = durability;
         this.attackSound = attackSound;

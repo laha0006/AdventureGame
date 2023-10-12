@@ -1,9 +1,6 @@
 package game;
 
-import messages.Direction;
-import messages.ReturnAttack;
-import messages.ReturnConsumable;
-import messages.Status;
+import messages.*;
 import item.Item;
 
 import java.util.ArrayList;
@@ -74,7 +71,7 @@ public class Adventure {
         return player.getItems();
     }
 
-    public Status equip(String itemName) {
+    public ReturnEquip equip(String itemName) {
         return player.equip(itemName);
     }
 

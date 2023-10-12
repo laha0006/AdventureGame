@@ -8,6 +8,7 @@ public class ReturnAttack {
         private int lostEffect;
         private int enemyDamage;
         private int enemyHealthPoints;
+        private String color;
 
 
 
@@ -76,6 +77,14 @@ public class ReturnAttack {
 
     public void setEnemyHealthPoints(int hp) {
             enemyHealthPoints = hp;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
     }
 }
 
